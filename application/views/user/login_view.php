@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="container">
-    <h1>Login in</h1>
+    <h1>Login</h1>
     <?php
     echo form_open();
-    echo form_label('Username:','username').'<br />';
-    echo form_error('username');
-    echo form_input('username').'<br />';
+    echo form_label('Email:','email').'<br />';
+    echo form_error('email');
+    echo form_input('email').'<br />';
     echo form_label('Password:', 'password').'<br />';
     echo form_error('password');
     echo form_password('password').'<br />';
