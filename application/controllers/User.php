@@ -12,7 +12,8 @@ class User extends MY_Controller {
     }
  
     public function login() {
-        echo 'Here we will make the login form';
+        $this->data['message'] = 'here will be the login form';
+        $this->render('user/login_view');
     }
  
     public function logout() {
