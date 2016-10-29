@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
  
-class Register extends MY_Controller {
+class Register extends Public_Controller {
     public function index() {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');

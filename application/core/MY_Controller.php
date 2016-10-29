@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
  
-class MY_Controller extends CI_Controller {
+class Public_Controller extends CI_Controller {
     protected $data = array();
     function __construct() {
         parent::__construct();
@@ -24,7 +24,7 @@ class MY_Controller extends CI_Controller {
     }
 }
 
-class Auth_Controller extends MY_Controller {
+class Auth_Controller extends Public_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('ion_auth');
