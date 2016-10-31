@@ -9,7 +9,7 @@
         echo 'ICTLab';
         echo ($page_title=='') ? FALSE : (' | ' . $page_title);
     ?></title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.css"); ?>"/>
     <?php echo $before_closing_head;?>
 </head>
 <body>
