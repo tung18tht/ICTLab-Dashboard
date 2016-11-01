@@ -8,7 +8,7 @@ class User extends Public_Controller {
     }
  
     public function index() {
-        $this->load->view('welcome_message');
+        redirect('dashboard');
     }
 
     public function login() {
