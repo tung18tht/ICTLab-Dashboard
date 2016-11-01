@@ -1,28 +1,24 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="container">
-    <!-- <?php
+    <?php
     echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
     ?>
-    <?php
-    echo form_open();
-    echo form_label('First name:','first_name').'<br />';
-    echo form_error('first_name');
-    echo form_input('first_name',set_value('first_name')).'<br />';
-    echo form_label('Last name:','last_name').'<br />';
-    echo form_error('last_name');
-    echo form_input('last_name',set_value('last_name')).'<br />';
-    echo form_label('Email:','email').'<br />';
-    echo form_error('email');
-    echo form_input('email',set_value('email')).'<br />';
-    echo form_label('Password:', 'password').'<br />';
-    echo form_error('password');
-    echo form_password('password').'<br />';
-    echo form_label('Confirm password:', 'confirm_password').'<br />';
-    echo form_error('confirm_password');
-    echo form_password('confirm_password').'<br /><br />';
-    echo form_submit('register','Register');
-    echo form_close();
-    ?> -->
+    <!-- <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
     <div id="signupbox" class="col-md-8 col-md-offset-2">
         <div class="panel panel-info">
@@ -30,23 +26,30 @@
                 <div class="panel-title">Sign Up</div>
             </div>  
             <div class="panel-body" >
-                <form id="signupform" class="form-horizontal" method="post" accept-charset="utf-8"
+                <form class="form-horizontal" method="post" accept-charset="utf-8"
                     action="<?php echo base_url("index.php/register"); ?>"
                 >
                     
-                    <!-- <?php
-                        if (form_error('first_name')==='') {
-                            echo 'lmao';
-                        } else {
-                            echo 'lol';
+                    <?php
+                        if ((form_error('first_name')!='') ||
+                            (form_error('last_name')!='') ||
+                            (form_error('email')!='') ||
+                            (form_error('password')!='') ||
+                            (form_error('confirm_password')!='')
+                        ) {
+                            echo '<div class="col-md-12 alert alert-danger">
+                                      <div class="col-md-2 text-center"><strong>Errors:</strong></div>
+                                      <div class="col-md-10"><ul>';
+                            echo (form_error('first_name')!='') ? '<li>'.form_error('first_name').'</li>' : FALSE;
+                            echo (form_error('last_name')!='') ? '<li>'.form_error('last_name').'</li>' : FALSE;
+                            echo (form_error('email')!='') ? '<li>'.form_error('email').'</li>' : FALSE;
+                            echo (form_error('password')!='') ? '<li>'.form_error('password').'</li>' : FALSE;
+                            echo (form_error('confirm_password')!='') ? '<li>'.form_error('confirm_password').'</li>' : FALSE;
+                            echo '</ul></div></div>';
                         }
                         
-                        // <div id="signupalert" style="display:none" class="alert alert-danger">
-                        //     <p>Error:</p>
-                        //     <span></span>
-                        // </div>
-                    ?> -->
-                                
+                        
+                    ?>   
                     <div class="form-group">
                         <label for="first_name" class="col-md-3 control-label">First Name</label>
                         <div class="col-md-9">
