@@ -89,7 +89,7 @@ $config['admin_group']                = 'admin';             // Default administ
 $config['identity']                   = 'email';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password
 $config['max_password_length']        = 20;                  // Maximum Allowed Length of Password
-$config['email_activation']           = FALSE;               // Email Activation for registration
+$config['email_activation']           = TRUE;               // Email Activation for registration
 $config['manual_activation']          = FALSE;               // Manual Activation for registration
 $config['remember_users']             = TRUE;                // Allow users to be remembered and enable auto-login
 $config['user_expire']                = 0;               // How long to remember the user (seconds). Set to zero for no expiration
@@ -122,10 +122,14 @@ $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, 
 $config['email_config'] = array(
 	'mailtype' => 'html',
     'protocol' => 'smtp',
-    'smtp_host' => 'smtp.gmail.com',
-    'smtp_user' => '@gmail.com',
-    'smtp_pass' => '',
-    'smtp_port' => '465'
+    'smtp_host' => 'ssl://smtp.googlemail.com',
+    'smtp_user' => 'ictlab.usth@gmail.com',
+    'smtp_pass' => 'ict12345',
+    'smtp_port' => '465',
+    'wordwrap' => TRUE,
+    'charset' => 'iso-8859-1',
+    'newline' => "\r\n",
+    'crlf' => "\r\n"
 );
 
 /*
