@@ -10,6 +10,7 @@
         echo ($page_title=='') ? FALSE : (' | ' . $page_title);
     ?></title>
     <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.css"); ?>"/>
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/style.css"); ?>"/>
     <?php echo $before_closing_head;?>
 </head>
 <body>
