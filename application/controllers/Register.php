@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class Register extends Public_Controller {
     public function index() {
+        $this->data['page_title'] = 'Register';
+        
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
