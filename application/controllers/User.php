@@ -55,7 +55,7 @@ class User extends Public_Controller {
             } else {
                 $_SESSION['auth_message'] = $this->ion_auth->errors();
                 $this->session->mark_as_flash('auth_message');
-                redirect("auth/forgot_password");
+                redirect("user/forgot_password");
             }
         }
     }
