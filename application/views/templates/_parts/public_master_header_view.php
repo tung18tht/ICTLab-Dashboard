@@ -14,3 +14,18 @@
     <?php echo $before_closing_head;?>
 </head>
 <body>
+    <?php
+        if (isset($_SESSION['auth_message'])) {
+            echo '<script type="text/javascript">$("#sessionMessageModal").modal("show")</script>';
+        }
+    ?>
+    <div class="modal fade" id="sessionMessageModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <p>Some text in the modal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
