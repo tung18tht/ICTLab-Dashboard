@@ -839,7 +839,7 @@ class Ion_auth_model extends CI_Model
 				}
 			}
 
-			$password = $this->salt();
+			$password = $this->generateRandomPassword();
 
 			$data = array(
 			    'password'                => $this->hash_password($password, $salt),
@@ -855,6 +855,16 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events(array('post_forgotten_password_complete', 'post_forgotten_password_complete_unsuccessful'));
 		return FALSE;
+	}
+
+	public function generateRandomPassword($length = 20) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $charactersLength = strlen($characters);
+	    $randomPassword = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomPassword .= $characters[rand(0, $charactersLength - 1)];
+	    }
+	    return $randomPassword;
 	}
 
 	/**
