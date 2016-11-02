@@ -15,8 +15,8 @@ class User extends Public_Controller {
         $this->data['title'] = "Login";
         
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
+        $this->form_validation->set_rules('password', 'Password', 'min_length[8]|max_length[20]|required');
         if ($this->form_validation->run() === FALSE) {
             $this->load->helper('form');
             $this->render('user/login_view');
