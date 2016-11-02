@@ -8,14 +8,15 @@
             </div>
 
             <div class="panel-body">
-                <div class="col-xs-12 text-center"><p>Please enter your email address so we can send you an email to reset your password.</p></div>
                 <form class="form-horizontal" method="post" accept-charset="utf-8"
                     action="<?php echo base_url("index.php/user/forgot_password"); ?>">
+
+                    <div class="col-xs-12 text-center"><p>Please enter your email address so we can send you an email to reset your password.</p></div>
                     <?php
                         if ((form_error('email')!='')) {
-                            echo '<div class="col-md-12 alert alert-danger">
-                                      <div class="col-md-2 text-center"><strong>Errors:</strong></div>
-                                      <div class="col-md-10"><ul>';
+                            echo '<div class="col-xs-12 alert alert-danger">
+                                      <div class="col-sm-2 text-center"><strong>Errors:</strong></div>
+                                      <div class="col-sm-10"><ul>';
                             echo (form_error('email')!='') ? '<li>'.form_error('email').'</li>' : FALSE;
                             echo '</ul></div></div>';
                         }
@@ -33,7 +34,7 @@
                     </div>
                 </form>
                     
-                <div id="footerforgot">
+                <div id="footerforgot" class="col-xs-12">
                     <div class="text-center">
                         Back to the <?php echo anchor('user/login', 'Login page');?>
                     </div>
