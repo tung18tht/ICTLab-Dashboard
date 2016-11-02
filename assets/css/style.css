@@ -32,3 +32,19 @@
     border-top: 1px solid #BBB;
     padding-top:15px;
 }
+
+/* Forgot password page */
+
+#forgotpassbox {
+    margin-top:50px;
+}
+
+#forgotpassbox .input-group {
+    margin-bottom: 25px;
+}
+
+#footerforgot {
+    margin-top: 100px;
+    border-top: 1px solid #BBB;
+    padding-top:15px;
+}

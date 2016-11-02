@@ -39,38 +39,27 @@ class User extends Public_Controller {
         redirect('user/login');
     }
 
+    public function forgot_password() {
+        $this->data['title'] = "Forgot Password";
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('user/forgot_password_view');
+        } else {
+            if ($this->ion_auth->forgotten_password($this->input->post('email'))) {
+                $_SESSION['auth_message'] = $this->ion_auth->messages();
+                $this->session->mark_as_flash('auth_message');
+                redirect("user/login");
+            } else {
+                $_SESSION['auth_message'] = $this->ion_auth->errors();
+                $this->session->mark_as_flash('auth_message');
+                redirect("auth/forgot_password");
+            }
+        }
+    }
 
-    // //forgot password
-    // function forgot_password()
-    // {
-    //     $this->form_validation->set_rules('email', 'Email Address', 'required');
-    //     if ($this->form_validation->run() == false)
-    //     {
-    //         //setup the input
-    //         $this->data['email'] = array('name' => 'email',
-    //             'id' => 'email',
-    //         );
-    //         //set any errors and display the form
-    //         $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-    //         $this->render();
-    //     }
-    //     else
-    //     {
-    //         //run the forgotten password method to email an activation code to the user
-    //         $forgotten = $this->ion_auth->forgotten_password($this->input->post('email'));
-    //         if ($forgotten)
-    //         { //if there were no errors
-    //             $this->session->set_flashdata('message', $this->ion_auth->messages());
-    //             redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
-    //         }
-    //         else
-    //         {
-    //             $this->session->set_flashdata('message', $this->ion_auth->errors());
-    //             redirect("auth/forgot_password", 'refresh');
-    //         }
-    //     }
-    // }
-    
     // //reset password - final step for forgotten password
     // public function reset_password($code)
     // {
