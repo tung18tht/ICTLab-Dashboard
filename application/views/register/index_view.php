@@ -7,9 +7,7 @@
             </div>  
             <div class="panel-body" >
                 <form class="form-horizontal" method="post" accept-charset="utf-8"
-                    action="<?php echo base_url("index.php/register"); ?>"
-                >
-                    
+                    action="<?php echo base_url("index.php/register"); ?>">
                     <?php
                         if ((form_error('first_name')!='') ||
                             (form_error('last_name')!='') ||

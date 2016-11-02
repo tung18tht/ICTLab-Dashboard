@@ -28,7 +28,7 @@ class Register extends Public_Controller {
  
             $this->load->library('ion_auth');
             if($this->ion_auth->register($email,$password,$email,$additional_data)) {
-                $_SESSION['auth_message'] = 'The account has been created. You may now login.';
+                $_SESSION['auth_message'] = 'The account has been created. Please check your email for the activation link.';
                 $this->session->mark_as_flash('auth_message');
                 redirect('user/login');
             } else {

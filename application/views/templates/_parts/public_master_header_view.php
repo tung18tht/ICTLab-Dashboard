@@ -9,23 +9,20 @@
         echo 'ICTLab';
         echo ($page_title=='') ? FALSE : (' | ' . $page_title);
     ?></title>
+
     <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.css"); ?>"/>
     <link rel="stylesheet" href="<?php echo base_url("assets/css/style.css"); ?>"/>
+
+    <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/bootstrap/js/bootstrap.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/notify.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/script.js"); ?>"></script>
+
     <?php echo $before_closing_head;?>
 </head>
 <body>
     <?php
         if (isset($_SESSION['auth_message'])) {
-            echo '<script type="text/javascript">$("#sessionMessageModal").modal("show")</script>';
+            echo '<script type="text/javascript">$.notify("'.$_SESSION['auth_message'].'", "info");</script>';
         }
     ?>
-    <div class="modal fade" id="sessionMessageModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p>Some text in the modal.</p>
-                </div>
-            </div>
-        </div>
-    </div>
