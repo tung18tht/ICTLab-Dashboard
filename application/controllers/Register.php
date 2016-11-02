@@ -38,4 +38,21 @@ class Register extends Public_Controller {
             }
         }
     }
+
+    public function activate($id, $code=false) {
+        $this->load->library('ion_auth');
+        if ($code !== false)
+            $activation = $this->ion_auth->activate($id, $code);
+        else if ($this->ion_auth->is_admin())
+            $activation = $this->ion_auth->activate($id);
+        if ($activation) {
+            $_SESSION['auth_message'] = $this->ion_auth->messages();
+            $this->session->mark_as_flash('auth_message');
+            redirect("user/login");
+        } else {
+            $_SESSION['auth_message'] = $this->ion_auth->errors();
+            $this->session->mark_as_flash('auth_message');
+            redirect("user/login");
+        }
+    }
 }
