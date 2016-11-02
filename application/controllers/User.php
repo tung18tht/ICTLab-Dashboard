@@ -60,19 +60,15 @@ class User extends Public_Controller {
         }
     }
 
-    // //reset password - final step for forgotten password
-    // public function reset_password($code)
-    // {
-    //     $reset = $this->ion_auth->forgotten_password_complete($code);
-    //     if ($reset)
-    //     {  //if the reset worked then send them to the login page
-    //         $this->session->set_flashdata('message', $this->ion_auth->messages());
-    //         redirect("auth/login", 'refresh');
-    //     }
-    //     else
-    //     { //if the reset didnt work then send them back to the forgot password page
-    //         $this->session->set_flashdata('message', $this->ion_auth->errors());
-    //         redirect("auth/forgot_password", 'refresh');
-    //     }
-    // }
+    public function reset_password($code) {
+        if ($this->ion_auth->forgotten_password_complete($code)) {
+            $_SESSION['auth_message'] = 'Your password has been changed. Please check your email for the new password.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("user/login");
+        } else {
+            $_SESSION['auth_message'] = $this->ion_auth->errors();
+            $this->session->mark_as_flash('auth_message');
+            redirect("user/forgot_password");
+        }
+    }
 }
