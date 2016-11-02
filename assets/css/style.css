@@ -3,7 +3,30 @@
     margin-top:50px;
 }
 
-#signupbox #footersignin {
+#footersignin {
+    border-top: 1px solid #BBB;
+    padding-top:15px;
+}
+
+/* Sign in page */
+#loginbox {
+    margin-top:50px;
+}
+
+#forgotpass {
+    font-size: 80%;
+    position: relative;
+}
+
+#loginbody {
+    padding-top:30px;
+}
+
+#loginbody .input-group {
+    margin-bottom: 25px;
+}
+
+#footersignup {
     border-top: 1px solid #BBB;
     padding-top:15px;
 }

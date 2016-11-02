@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="container">
+    <h1 class="text-center">ICTLab Dashboard</h1>
     <div id="signupbox" class="col-md-8 col-md-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -27,7 +28,7 @@
                         }
                         
                         
-                    ?>   
+                    ?>
                     <div class="form-group">
                         <label for="first_name" class="col-md-3 control-label">First Name</label>
                         <div class="col-md-9">
