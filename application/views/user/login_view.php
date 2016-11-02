@@ -5,7 +5,7 @@
         <div class="panel panel-info" >
             <div class="panel-heading">
                 <div class="panel-title">Sign In</div>
-                <div id="forgotpass" class="pull-right"><a href="#">Forgot password?</a></div>
+                <div id="forgotpass" class="pull-right"><?php echo anchor('user/forgot_password', 'Forgot password?');?></div>
             </div>     
 
             <div id="loginbody" class="panel-body">
