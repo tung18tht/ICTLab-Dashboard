@@ -16,6 +16,7 @@
 #forgotpass {
     font-size: 80%;
     position: relative;
+    top: -18px;
 }
 
 #loginbody {
@@ -27,6 +28,7 @@
 }
 
 #footersignup {
+    margin-top: 75px;
     border-top: 1px solid #BBB;
     padding-top:15px;
 }

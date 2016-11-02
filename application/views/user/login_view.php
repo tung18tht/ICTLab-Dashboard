@@ -38,7 +38,8 @@
                         <div class="input-group">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="remember" checked="checked"> Remember me
+                                    <input type="checkbox" name="remember" value="remember" checked="checked">
+                                    Remember me
                                 </label>
                             </div>
                         </div>
