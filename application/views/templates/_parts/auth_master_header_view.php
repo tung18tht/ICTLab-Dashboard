@@ -40,7 +40,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Hello, 
-                            <?php echo "<strong>"   . "</strong>"; ?>
+                            <?php echo "<strong>" . $user->last_name . "</strong>"; ?>
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -53,8 +53,10 @@
                                             </p>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p class="text-left"><strong>Nombre Apellido</strong></p>
-                                            <p class="text-left small">correoElectra@email.com</p>
+                                            <p class="text-left"><strong>
+                                                <?php echo $user->first_name . " " . $user->last_name; ?>
+                                            </strong></p>
+                                            <p class="text-left small"><?php echo $user->email; ?></p>
                                             <p class="text-left">
                                                 <?php echo anchor('', 'Profile', array('class' => 'btn btn-primary btn-block btn-sm'));?>
                                             </p>
