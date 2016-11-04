@@ -12,7 +12,7 @@ class User extends Public_Controller {
     }
 
     public function login() {
-        $this->data['title'] = "Login";
+        $this->data['page_title'] = "Login";
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
@@ -40,7 +40,7 @@ class User extends Public_Controller {
     }
 
     public function forgot_password() {
-        $this->data['title'] = "Forgot Password";
+        $this->data['page_title'] = "Forgot Password";
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
