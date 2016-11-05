@@ -7,6 +7,8 @@ class Profile extends Auth_Controller {
     }
 
     public function index() {
+        $this->data['page_title'] = 'Profile';
+
         $this->render('profile/index_view');
     }
 }

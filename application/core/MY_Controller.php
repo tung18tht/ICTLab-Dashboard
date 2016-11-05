@@ -29,12 +29,16 @@ class Auth_Controller extends Public_Controller {
             redirect('user/login');
         }
 
+        $user = $this->ion_auth->user()->row();
+        $this->data['user'] = $user;
+
         $this->load->model('profile_model');
+        $profile = $this->profile_model->profile($user->id);
+        $this->data['profile'] = $profile;
+
     }
     
     protected function render($the_view = NULL, $template = 'auth_master') {
-        $user = $this->ion_auth->user()->row();
-        $this->data['user'] = $user;
         parent::render($the_view, $template);
     }
 }

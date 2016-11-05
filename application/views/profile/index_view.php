@@ -1,93 +1,73 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <div class="container">
-  <h1 class="page-header">Edit Profile</h1>
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="text-center">
-        <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
-      </div>
-    </div>
-    <!-- edit form column -->
-    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-      <div class="alert alert-info alert-dismissable">
-        <a class="panel-close close" data-dismiss="alert">×</a> 
-        <i class="fa fa-coffee"></i>
-        This is an <strong>.alert</strong>. Use this to show important messages to the user.
-      </div>
-      <h3>Personal info</h3>
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-lg-3 control-label">First name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="Jane" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Last name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="Bishop" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Company:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value="janesemail@gmail.com" type="text">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Time Zone:</label>
-          <div class="col-lg-8">
-            <div class="ui-select">
-              <select id="user_time_zone" class="form-control">
-                <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                <option value="Alaska">(GMT-09:00) Alaska</option>
-                <option value="Pacific Time (US & Canada)">(GMT-08:00) Pacific Time (US & Canada)</option>
-                <option value="Arizona">(GMT-07:00) Arizona</option>
-                <option value="Mountain Time (US & Canada)">(GMT-07:00) Mountain Time (US & Canada)</option>
-                <option value="Central Time (US & Canada)" selected="selected">(GMT-06:00) Central Time (US & Canada)</option>
-                <option value="Eastern Time (US & Canada)">(GMT-05:00) Eastern Time (US & Canada)</option>
-                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-              </select>
+    <div class="row" style="margin-top: 25px">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
+                <h6>Change photo</h6>
+                <input type="file" class="text-center center-block well well-sm">
             </div>
-          </div>
+
+            <div class="text-center">
+                <?php echo anchor('', 'Change password', array('class' => 'btn btn-danger')); ?>
+            </div>
         </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Username:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="janeuser" type="text">
-          </div>
+        <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+            <h3>Personal info</h3>
+            <form class="form-horizontal" method="post" accept-charset="utf-8"
+                action="<?php echo base_url("index.php/profile"); ?>">
+                <div class="form-group">
+                    <label for="first_name" class="col-lg-3 control-label">First name</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="first_name"
+                            value= "<?php echo $user->first_name; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="last_name" class="col-lg-3 control-label">Last name</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="last_name"
+                            value= "<?php echo $user->last_name; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="email" name="email"
+                            value= "<?php echo $user->email; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="col-lg-3 control-label">Title</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="title"
+                            value= "<?php echo $profile['title']; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="position" class="col-lg-3 control-label">Position</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="position"
+                            value= "<?php echo $profile['position']; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="affiliation" class="col-lg-3 control-label">Affiliation</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="affiliation"
+                            value= "<?php echo $profile['affiliation']; ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"></label>
+                    <div class="col-lg-8">
+                        <input class="btn btn-primary" value="Save Changes" type="submit">
+                        <span></span>
+                        <?php echo anchor('dashboard', 'Cancel', array('class' => 'btn btn-default')); ?>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="11111122333" type="password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="11111122333" type="password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
-            <input class="btn btn-primary" value="Save Changes" type="button">
-            <span></span>
-            <input class="btn btn-default" value="Cancel" type="reset">
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
 </div>

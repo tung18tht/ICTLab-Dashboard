@@ -9,4 +9,9 @@ class Profile_Model extends CI_Model {
     public function create_profile($id) {
         $this->db->insert('profile', array('user_id' => $id));
     }
+
+    public function profile($id) {
+        $query = $this->db->get_where('profile', array('user_id' => $id));
+        return $query->row_array();
+    }
 }

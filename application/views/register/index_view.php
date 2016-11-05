@@ -26,8 +26,6 @@
                             echo (form_error('confirm_password')!='') ? '<li>'.form_error('confirm_password').'</li>' : FALSE;
                             echo '</ul></div></div>';
                         }
-                        
-                        
                     ?>
                     <div class="form-group">
                         <label for="first_name" class="col-md-3 control-label">First Name</label>
