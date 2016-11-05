@@ -35,6 +35,8 @@ class Auth_Controller extends Public_Controller {
         $this->load->model('profile_model');
         $profile = $this->profile_model->profile();
         $this->data['profile'] = $profile;
+
+        $this->data['avatar'] = ($profile['has_avatar']==0) ? 0 : $user->id;
     }
     
     protected function render($the_view = NULL, $template = 'auth_master') {

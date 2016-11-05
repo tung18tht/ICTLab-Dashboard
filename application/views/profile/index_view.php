@@ -4,7 +4,7 @@
     <div class="row" style="margin-top: 25px">
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
-                <img src="<?php echo base_url("assets/avatar/0.png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
+                <img src="<?php echo base_url("assets/avatar/".$avatar.".png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
                 <h6>Change photo</h6>
                 <input type="file" class="text-center center-block well well-sm">
             </div>
@@ -15,6 +15,7 @@
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <h3>Personal info</h3>
+            <hr>
             <form class="form-horizontal" method="post" accept-charset="utf-8"
                 action="<?php echo base_url("index.php/profile"); ?>">
                 <?php

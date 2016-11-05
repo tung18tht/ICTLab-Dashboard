@@ -86,6 +86,7 @@ CREATE TABLE `profile` (
   `title` varchar(100) DEFAULT NULL,
   `position` varchar(100) DEFAULT NULL,
   `affiliation` varchar(100) DEFAULT NULL,
+  `has_avatar` int(1) unsigned DEFAULT 0,
   PRIMARY KEY (`user_id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
