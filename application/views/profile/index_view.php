@@ -5,13 +5,17 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
                 <img src="<?php echo base_url("assets/avatar/".$avatar.".png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
-                <h6>Change photo</h6>
-                <input type="file" class="text-center center-block well well-sm">
             </div>
+            <form class="form-horizontal" method="post" enctype="multipart/form-data"
+                action="<?php echo base_url("index.php/profile/upload_avatar"); ?>">
+                <div class="text-center">
 
-            <div class="text-center">
-                <?php echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger')); ?>
-            </div>
+                    <input type="file" class="text-center center-block well well-sm" name="avatar"/>
+
+                    <input type="submit" value="Upload" class="btn btn-success"/>
+                    <?php echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger')); ?>
+                </div>
+            </form>
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <h3>Personal info</h3>
@@ -87,6 +91,15 @@
                     </div>
                 </div>
             </form>
+
+            <h3>Publications</h3>
+            <hr>
+
+            <h3>Supervised Students</h3>
+            <hr>
+
+            <h3>Research Projects</h3>
+            <hr>
         </div>
     </div>
 </div>

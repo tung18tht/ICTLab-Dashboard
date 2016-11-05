@@ -19,4 +19,8 @@ class Profile_Model extends Ion_auth_model {
         $this->db->update('users', $user_data, "id = " . $this->user()->row()->id);
         $this->db->update('profile', $profile_data, "user_id = " . $this->user()->row()->id);
     }
+
+    public function set_avatar() {
+        $this->db->update('profile', array('has_avatar' => 1), "user_id = " . $this->user()->row()->id);
+    }
 }

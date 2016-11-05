@@ -44,6 +44,27 @@ class Profile extends Auth_Controller {
         }
     }
 
+    public function upload_avatar() {
+        $config['upload_path'] = 'assets/avatar/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['file_name'] = $this->data['user']->id . '.png';
+        $config['overwrite'] = TRUE;
+        $config['max_size'] = '2048';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('avatar')) {
+            $_SESSION['auth_message'] = $this->upload->display_errors('','');
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        } else {
+            $this->profile_model->set_avatar();
+            $_SESSION['auth_message'] = 'Profile picture changed.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+    }
+
     public function change_password() {
         $this->data['page_title'] = 'Change password';
         

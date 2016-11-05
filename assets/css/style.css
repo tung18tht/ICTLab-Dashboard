@@ -80,6 +80,14 @@
     height: auto;
 }
 
+.well {
+    margin-top: 10px;
+}
+
+.well:hover {
+    cursor: pointer;
+}
+
 /* Chage password page */
 
 #changepassbox {
