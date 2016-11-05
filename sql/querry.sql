@@ -1,18 +1,18 @@
+-- CI Session
+
 DROP TABLE IF EXISTS `ci_sessions`;
 
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
-`id` varchar(40) NOT NULL,
-`ip_address` varchar(45) NOT NULL,
-`timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
-`data` blob NOT NULL,
-KEY `ci_sessions_timestamp` (`timestamp`)
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
+  `data` blob NOT NULL,
+  KEY `ci_sessions_timestamp` (`timestamp`)
 );
 
-DROP TABLE IF EXISTS `groups`;
+-- Ion_Auth database
 
-#
-# Table structure for table 'groups'
-#
+DROP TABLE IF EXISTS `groups`;
 
 CREATE TABLE `groups` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -21,21 +21,11 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#
-# Dumping data for table 'groups'
-#
-
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
      (1,'admin','Administrator'),
      (2,'members','General User');
 
-
-
 DROP TABLE IF EXISTS `users`;
-
-#
-# Table structure for table 'users'
-#
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -53,25 +43,13 @@ CREATE TABLE `users` (
   `active` tinyint(1) unsigned DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
-  `company` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-#
-# Dumping data for table 'users'
-#
-
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-     ('1','127.0.0.1','administrator','$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36','','admin@admin.com','',NULL,'1268889823','1268889823','1', 'Admin','istrator','ADMIN','0');
-
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES
+     ('1','127.0.0.1','administrator','$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36','','admin@admin.com','',NULL,'1268889823','1268889823','1', 'Admin','istrator');
 
 DROP TABLE IF EXISTS `users_groups`;
-
-#
-# Table structure for table 'users_groups'
-#
 
 CREATE TABLE `users_groups` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -89,12 +67,7 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
      (1,1,1),
      (2,1,2);
 
-
 DROP TABLE IF EXISTS `login_attempts`;
-
-#
-# Table structure for table 'login_attempts'
-#
 
 CREATE TABLE `login_attempts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -102,4 +75,44 @@ CREATE TABLE `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- User profile
+
+DROP TABLE IF EXISTS `profile`;
+
+CREATE TABLE `profile` (
+  `user_id` int(11) unsigned NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `position` varchar(100) DEFAULT NULL,
+  `affiliation` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `users_publications`;
+
+CREATE TABLE `users_publications` (
+  `user_id` int(11) unsigned NOT NULL,
+  `publication_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`, `publication_name`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `users_students`;
+
+CREATE TABLE `users_students` (
+  `user_id` int(11) unsigned NOT NULL,
+  `student_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`, `student_name`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `users_projects`;
+
+CREATE TABLE `users_projects` (
+  `user_id` int(11) unsigned NOT NULL,
+  `project_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`, `project_name`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

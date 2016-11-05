@@ -58,7 +58,7 @@
                                             </strong></p>
                                             <p class="text-left small"><?php echo $user->email; ?></p>
                                             <p class="text-left">
-                                                <?php echo anchor('', 'Profile', array('class' => 'btn btn-primary btn-block btn-sm'));?>
+                                                <?php echo anchor('profile', 'Profile', array('class' => 'btn btn-primary btn-block btn-sm'));?>
                                             </p>
                                         </div>
                                     </div>
