@@ -46,7 +46,29 @@ class Profile extends Auth_Controller {
 
     public function change_password() {
         $this->data['page_title'] = 'Change password';
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('old_password','Old password','required');
+        $this->form_validation->set_rules('password','New password','min_length[8]|max_length[20]|required');
+        $this->form_validation->set_rules('confirm_password','Confirm password','matches[password]|required');
 
-        $this->render('profile/change_password_view');
+        if ($this->form_validation->run()===FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/change_password_view');
+        } else {
+            $email = $this->data['user']->email;
+            $old_password = $this->input->post('old_password');
+            $password = $this->input->post('password');
+
+            if ($this->ion_auth->change_password($email, $old_password, $password)) {
+                $_SESSION['auth_message'] = $this->ion_auth->messages();
+                $this->session->mark_as_flash('auth_message');
+                redirect("user/logout");
+            } else {
+                $_SESSION['auth_message'] = $this->ion_auth->errors();
+                $this->session->mark_as_flash('auth_message');
+                redirect("profile/change_password");
+            }
+        }
     }
 }
