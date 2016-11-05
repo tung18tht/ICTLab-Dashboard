@@ -23,10 +23,13 @@ class Public_Controller extends CI_Controller {
 class Auth_Controller extends Public_Controller {
     function __construct() {
         parent::__construct();
+        
         $this->load->library('ion_auth');
         if($this->ion_auth->logged_in()===FALSE) {
             redirect('user/login');
         }
+
+        $this->load->model('profile_model');
     }
     
     protected function render($the_view = NULL, $template = 'auth_master') {
