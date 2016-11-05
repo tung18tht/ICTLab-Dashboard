@@ -4,7 +4,7 @@
     <div class="row" style="margin-top: 25px">
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
-                <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="<?php echo base_url("assets/avatar/0.png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
                 <h6>Change photo</h6>
                 <input type="file" class="text-center center-block well well-sm">
             </div>

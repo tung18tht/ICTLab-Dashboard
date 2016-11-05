@@ -48,9 +48,7 @@
                                 <div class="navbar-login">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <p class="text-center">
-                                                <span class="glyphicon glyphicon-user icon-size"></span>
-                                            </p>
+                                            <img src="<?php echo base_url("assets/avatar/0.png"); ?>" id="navbar-avatar" class="img-thumbnail" alt="avatar">
                                         </div>
                                         <div class="col-lg-8">
                                             <p class="text-left"><strong>

@@ -62,14 +62,22 @@
     padding-top: 0px;
 }
 
-.icon-size {
-    font-size: 87px;
+#navbar-avatar {
+    width: 100%;
+    height: auto;
 }
 
 /* Index dashboard */
 
 #welcome {
     margin-top: 100px;
+}
+
+/* Profile page*/
+
+#avatar {
+    width: 250px;
+    height: auto;
 }
 
 /* Chage password page */
