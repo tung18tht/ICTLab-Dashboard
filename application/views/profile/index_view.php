@@ -10,13 +10,38 @@
             </div>
 
             <div class="text-center">
-                <?php echo anchor('', 'Change password', array('class' => 'btn btn-danger')); ?>
+                <?php echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger')); ?>
             </div>
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <h3>Personal info</h3>
             <form class="form-horizontal" method="post" accept-charset="utf-8"
                 action="<?php echo base_url("index.php/profile"); ?>">
+                <?php
+                    if ((form_error('first_name')!='') ||
+                        (form_error('last_name')!='') ||
+                        (form_error('title')!='') ||
+                        (form_error('position')!='') ||
+                        (form_error('affiliation')!='')
+                    ) {
+                        echo '<div class="col-md-12 alert alert-danger">
+                                  <div class="col-md-2 text-center"><strong>Errors:</strong></div>
+                                  <div class="col-md-10"><ul>';
+                        echo (form_error('first_name')!='') ? '<li>'.form_error('first_name').'</li>' : FALSE;
+                        echo (form_error('last_name')!='') ? '<li>'.form_error('last_name').'</li>' : FALSE;
+                        echo (form_error('title')!='') ? '<li>'.form_error('title').'</li>' : FALSE;
+                        echo (form_error('position')!='') ? '<li>'.form_error('position').'</li>' : FALSE;
+                        echo (form_error('affiliation')!='') ? '<li>'.form_error('affiliation').'</li>' : FALSE;
+                        echo '</ul></div></div>';
+                    }
+                ?>
+                <div class="form-group">
+                    <label for="email" class="col-lg-3 control-label">Email</label>
+                    <div class="col-lg-8">
+                        <input readonly class="form-control" type="email" name="email"
+                            value= "<?php echo $user->email; ?>">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="first_name" class="col-lg-3 control-label">First name</label>
                     <div class="col-lg-8">
@@ -29,13 +54,6 @@
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="last_name"
                             value= "<?php echo $user->last_name; ?>">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-lg-3 control-label">Email</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="email" name="email"
-                            value= "<?php echo $user->email; ?>">
                     </div>
                 </div>
                 <div class="form-group">

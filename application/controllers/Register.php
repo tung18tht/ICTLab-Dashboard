@@ -47,7 +47,7 @@ class Register extends Public_Controller {
             $activation = $this->ion_auth->activate($id);
         if ($activation) {
             $this->load->model('profile_model');
-            $this->profile_model->create_profile($id);
+            $this->profile_model->create_profile();
 
             $_SESSION['auth_message'] = $this->ion_auth->messages();
             $this->session->mark_as_flash('auth_message');

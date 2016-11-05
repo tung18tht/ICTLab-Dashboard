@@ -33,9 +33,8 @@ class Auth_Controller extends Public_Controller {
         $this->data['user'] = $user;
 
         $this->load->model('profile_model');
-        $profile = $this->profile_model->profile($user->id);
+        $profile = $this->profile_model->profile();
         $this->data['profile'] = $profile;
-
     }
     
     protected function render($the_view = NULL, $template = 'auth_master') {
