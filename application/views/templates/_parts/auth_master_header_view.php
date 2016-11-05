@@ -34,7 +34,7 @@
     ?>
 
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container"> 
+        <div class="container">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
