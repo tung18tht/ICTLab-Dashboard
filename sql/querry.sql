@@ -94,26 +94,29 @@ CREATE TABLE `profile` (
 DROP TABLE IF EXISTS `users_publications`;
 
 CREATE TABLE `users_publications` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `publication_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`, `publication_name`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `users_students`;
 
 CREATE TABLE `users_students` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `student_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`, `student_name`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `users_projects`;
 
 CREATE TABLE `users_projects` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `project_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`, `project_name`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

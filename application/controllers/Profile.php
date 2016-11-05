@@ -8,6 +8,10 @@ class Profile extends Auth_Controller {
 
     public function index() {
         $this->data['page_title'] = 'Profile';
+
+        $this->data['publications'] = $this->profile_model->get_publications();
+        $this->data['students'] = $this->profile_model->get_students();
+        $this->data['projects'] = $this->profile_model->get_projects();
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');

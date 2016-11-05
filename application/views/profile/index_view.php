@@ -12,7 +12,7 @@
 
                     <input type="file" class="text-center center-block well well-sm" name="avatar"/>
 
-                    <input type="submit" value="Upload" class="btn btn-success"/>
+                    <input type="submit" value="Upload" class="btn btn-info"/>
                     <?php echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger')); ?>
                 </div>
             </form>
@@ -94,12 +94,45 @@
 
             <h3>Publications</h3>
             <hr>
+            <table class="table table-striped table-bordered">
+                <?php foreach($publications as $publication){ ?>
+                <tr>
+                    <td><?php echo $publication['publication_name']; ?></td>
+                    <td>
+                        <a href="<?php echo site_url('users_publication/edit/'); ?>" class="btn btn-info">Edit</a> 
+                        <a href="<?php echo site_url('users_publication/remove/'); ?>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <?php } ?>
+            </table>
 
             <h3>Supervised Students</h3>
             <hr>
+            <table class="table table-striped table-bordered">
+                <?php foreach($students as $student){ ?>
+                <tr>
+                    <td><?php echo $student['student_name']; ?></td>
+                    <td>
+                        <a href="<?php echo site_url('users_publication/edit/'); ?>" class="btn btn-info">Edit</a> 
+                        <a href="<?php echo site_url('users_publication/remove/'); ?>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <?php } ?>
+            </table>
 
             <h3>Research Projects</h3>
             <hr>
+            <table class="table table-striped table-bordered">
+                <?php foreach($projects as $project){ ?>
+                <tr>
+                    <td><?php echo $project['project_name']; ?></td>
+                    <td>
+                        <a href="<?php echo site_url('users_publication/edit/'); ?>" class="btn btn-info">Edit</a> 
+                        <a href="<?php echo site_url('users_publication/remove/'); ?>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <?php } ?>
+            </table>
         </div>
     </div>
 </div>
