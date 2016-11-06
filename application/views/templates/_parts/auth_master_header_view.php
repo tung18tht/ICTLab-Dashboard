@@ -22,6 +22,9 @@
         .container:not(:first-child) {
             margin-top: 50px;
         }
+        .container:not(:last-child) {
+            margin-bottom: 50px;
+        }
     </style>
     
     <?php echo $before_closing_head;?>
@@ -35,48 +38,49 @@
 
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Hello, 
-                            <?php echo "<strong>" . $user->last_name . "</strong>"; ?>
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="navbar-login">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <img src="<?php echo base_url("assets/avatar/".$avatar.".png"); ?>" id="navbar-avatar" class="img-thumbnail" alt="avatar">
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p class="text-left"><strong>
-                                                <?php echo $user->first_name . " " . $user->last_name; ?>
-                                            </strong></p>
-                                            <p class="text-left small"><?php echo $user->email; ?></p>
-                                            <p class="text-left">
-                                                <?php echo anchor('profile', 'Profile', array('class' => 'btn btn-primary btn-block btn-sm'));?>
-                                            </p>
-                                        </div>
+            <ul class="nav navbar-nav">
+                <li><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>          
+             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Hello, 
+                        <?php echo "<strong>" . $user->last_name . "</strong>"; ?>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <img src="<?php echo base_url("assets/avatar/".$avatar.".png"); ?>" id="navbar-avatar" class="img-thumbnail" alt="avatar">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>
+                                            <?php echo $user->first_name . " " . $user->last_name; ?>
+                                        </strong></p>
+                                        <p class="text-left small"><?php echo $user->email; ?></p>
+                                        <p class="text-left">
+                                            <?php echo anchor('profile', 'Profile', array('class' => 'btn btn-primary btn-block btn-sm'));?>
+                                        </p>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="navbar-login navbar-login-session">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p>
-                                                <?php echo anchor('user/logout', 'Logout', array('class' => 'btn btn-danger btn-block'));?>
-                                            </p>
-                                        </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <?php echo anchor('user/logout', 'Logout', array('class' => 'btn btn-danger btn-block'));?>
+                                        </p>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>

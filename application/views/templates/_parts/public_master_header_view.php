@@ -18,6 +18,12 @@
     <script type="text/javascript" src="<?php echo base_url("assets/js/notify.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/js/script.js"); ?>"></script>
 
+    <style>
+        .container:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    </style>
+
     <?php echo $before_closing_head;?>
 </head>
 <body>

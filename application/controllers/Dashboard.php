@@ -7,4 +7,10 @@ class Dashboard extends Auth_Controller {
 
         $this->render('dashboard/index_view');
     }
+
+    public function staff() {
+        $this->data['page_title'] = 'Staffs';
+
+        $this->render('dashboard/staff_view');
+    }
 }

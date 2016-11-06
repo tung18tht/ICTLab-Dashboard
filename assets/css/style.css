@@ -73,6 +73,12 @@
     margin-top: 100px;
 }
 
+/* Staff page */
+
+.img-center {
+    margin: 0 auto;
+}
+
 /* Profile page*/
 
 #avatar {
