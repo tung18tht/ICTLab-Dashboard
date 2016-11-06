@@ -9,9 +9,9 @@ class Profile extends Auth_Controller {
     public function index() {
         $this->data['page_title'] = 'Profile';
 
-        $this->data['publications'] = $this->profile_model->get_publications();
-        $this->data['students'] = $this->profile_model->get_students();
-        $this->data['projects'] = $this->profile_model->get_projects();
+        $this->data['publications'] = $this->profile_model->publications();
+        $this->data['students'] = $this->profile_model->students();
+        $this->data['projects'] = $this->profile_model->projects();
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
@@ -53,8 +53,11 @@ class Profile extends Auth_Controller {
 
         $this->data['view_user'] = $this->profile_model->get_user($id);
         $this->data['view_profile'] = $this->profile_model->get_profile($id);
-
         $this->data['view_avatar'] = ($this->data['view_profile']['has_avatar']==0) ? 0 : $id;
+
+        $this->data['view_publications'] = $this->profile_model->get_publications($id);
+        $this->data['view_students'] = $this->profile_model->get_students($id);
+        $this->data['view_projects'] = $this->profile_model->get_projects($id);
 
         $this->render('profile/view_view');
     }
