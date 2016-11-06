@@ -7,11 +7,13 @@ class Profile_Model extends Ion_auth_model {
     }
 
     public function get_user($id) {
-
+        $query = $this->db->get_where('users', array('id' => $id));
+        return $query->row_array();
     }
 
     public function get_profile($id) {
-
+        $query = $this->db->get_where('profile', array('user_id' => $id));
+        return $query->row_array();
     }
 
     public function create_profile() {
@@ -19,8 +21,7 @@ class Profile_Model extends Ion_auth_model {
     }
 
     public function profile() {
-        $query = $this->db->get_where('profile', array('user_id' => $this->user()->row()->id));
-        return $query->row_array();
+        return $this->get_profile($this->user()->row()->id);
     }
 
     public function update_profile($user_data, $profile_data) {
@@ -32,24 +33,36 @@ class Profile_Model extends Ion_auth_model {
         $this->db->update('profile', array('has_avatar' => 1), "user_id = " . $this->user()->row()->id);
     }
 
-    public function get_publications() {
-        return $this->db->get_where('users_publications', array('user_id' => $this->user()->row()->id))->result_array();
+    public function get_publications($id) {
+        return $this->db->get_where('users_publications', array('user_id' => $id))->result_array();
+    }
+
+    public function publications() {
+        return $this->get_publications($this->user()->row()->id);
     }
 
     public function get_publication_name($id) {
         return $this->db->get_where('users_publications', array('id' => $id))->row_array()['publication_name'];
     }
 
-    public function get_students() {
-        return $this->db->get_where('users_students', array('user_id' => $this->user()->row()->id))->result_array();
+    public function get_students($id) {
+        return $this->db->get_where('users_students', array('user_id' => $id))->result_array();
+    }
+
+    public function students() {
+        return $this->get_students($this->user()->row()->id);
     }
 
     public function get_student_name($id) {
         return $this->db->get_where('users_students', array('id' => $id))->row_array()['student_name'];
     }
 
-    public function get_projects() {
-        return $this->db->get_where('users_projects', array('user_id' => $this->user()->row()->id))->result_array();
+    public function get_projects($id) {
+        return $this->db->get_where('users_projects', array('user_id' => $id))->result_array();
+    }
+
+    public function projects() {
+        return $this->get_projects($this->user()->row()->id);
     }
 
     public function get_project_name($id) {
