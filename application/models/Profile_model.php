@@ -37,24 +37,24 @@ class Profile_Model extends Ion_auth_model {
         return $this->db->get_where('users_publications', array('user_id' => $id))->result_array();
     }
 
-    public function get_publication_name($id) {
-        return $this->db->get_where('users_publications', array('id' => $id))->row_array()['publication_name'];
+    public function get_publication_row($id) {
+        return $this->db->get_where('users_publications', array('id' => $id))->row_array();
     }
 
     public function get_students($id) {
         return $this->db->get_where('users_students', array('user_id' => $id))->result_array();
     }
 
-    public function get_student_name($id) {
-        return $this->db->get_where('users_students', array('id' => $id))->row_array()['student_name'];
+    public function get_student_row($id) {
+        return $this->db->get_where('users_students', array('id' => $id))->row_array();
     }
 
     public function get_projects($id) {
         return $this->db->get_where('users_projects', array('user_id' => $id))->result_array();
     }
 
-    public function get_project_name($id) {
-        return $this->db->get_where('users_projects', array('id' => $id))->row_array()['project_name'];
+    public function get_project_row($id) {
+        return $this->db->get_where('users_projects', array('id' => $id))->row_array();
     }
 
     public function add_publication($id, $name) {
@@ -81,19 +81,31 @@ class Profile_Model extends Ion_auth_model {
         $this->db->insert('users_projects',$data);
     }
 
-    public function is_publication_belong_user($id) {
-        $user_id = $this->db->get_where('users_publications', array('id' => $id))->row_array()['user_id'];
-        return ($this->user()->row()->id === $user_id) ? TRUE : FALSE;
+    public function can_edit_publication($user_id, $publication_id) {
+        if ($this->ion_auth->is_admin()) {
+            return TRUE;
+        }
+
+        $user_publication_id = $this->db->get_where('users_publications', array('id' => $publication_id))->row_array()['user_id'];
+        return ($user_publication_id === $user_id) ? TRUE : FALSE;
     }
 
-    public function is_student_belong_user($id) {
-        $user_id = $this->db->get_where('users_students', array('id' => $id))->row_array()['user_id'];
-        return ($this->user()->row()->id == $user_id) ? TRUE : FALSE;
+    public function can_edit_student($user_id, $student_id) {
+        if ($this->ion_auth->is_admin()) {
+            return TRUE;
+        }
+
+        $user_student_id = $this->db->get_where('users_students', array('id' => $student_id))->row_array()['user_id'];
+        return ($user_student_id === $user_id) ? TRUE : FALSE;
     }
 
-    public function is_project_belong_user($id) {
-        $user_id = $this->db->get_where('users_projects', array('id' => $id))->row_array()['user_id'];
-        return ($this->user()->row()->id == $user_id) ? TRUE : FALSE;
+    public function can_edit_project($user_id, $project_id) {
+        if ($this->ion_auth->is_admin()) {
+            return TRUE;
+        }
+
+        $user_project_id = $this->db->get_where('users_projects', array('id' => $project_id))->row_array()['user_id'];
+        return ($user_project_id === $user_id) ? TRUE : FALSE;
     }
 
     public function update_publication($id, $name) {

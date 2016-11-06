@@ -259,7 +259,7 @@ class Profile extends Auth_Controller {
     }
 
     public function edit_publication($id) {
-        if (!$this->profile_model->is_publication_belong_user($id)) {
+        if (!$this->profile_model->can_edit_publication($this->data['user']->id, $id)) {
             $_SESSION['auth_message'] = 'Wrong authentication.';
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
@@ -267,8 +267,7 @@ class Profile extends Auth_Controller {
 
         $this->data['page_title'] = "Edit publication";
 
-        $this->data['publication_name'] = $this->profile_model->get_publication_name($id);
-        $this->data['id'] = $id;
+        $this->data['user_publication'] = $this->profile_model->get_publication_row($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -279,12 +278,12 @@ class Profile extends Auth_Controller {
             $this->profile_model->update_publication($id, $this->input->post('name'));
             $_SESSION['auth_message'] = 'Publication updated.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$this->data['user_publication']['user_id']);
         }
     }
 
     public function edit_student($id) {
-        if (!$this->profile_model->is_student_belong_user($id)) {
+        if (!$this->profile_model->can_edit_student($this->data['user']->id, $id)) {
             $_SESSION['auth_message'] = 'Wrong authentication.';
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
@@ -292,8 +291,7 @@ class Profile extends Auth_Controller {
 
         $this->data['page_title'] = "Edit student";
 
-        $this->data['student_name'] = $this->profile_model->get_student_name($id);
-        $this->data['id'] = $id;
+        $this->data['user_student'] = $this->profile_model->get_student_row($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -304,12 +302,12 @@ class Profile extends Auth_Controller {
             $this->profile_model->update_student($id, $this->input->post('name'));
             $_SESSION['auth_message'] = 'Student updated.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$this->data['user_student']['user_id']);
         }
     }
 
     public function edit_project($id) {
-        if (!$this->profile_model->is_project_belong_user($id)) {
+        if (!$this->profile_model->can_edit_project($this->data['user']->id, $id)) {
             $_SESSION['auth_message'] = 'Wrong authentication.';
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
@@ -317,8 +315,7 @@ class Profile extends Auth_Controller {
 
         $this->data['page_title'] = "Edit project";
 
-        $this->data['project_name'] = $this->profile_model->get_project_name($id);
-        $this->data['id'] = $id;
+        $this->data['user_student'] = $this->profile_model->get_project_row($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -329,7 +326,7 @@ class Profile extends Auth_Controller {
             $this->profile_model->update_project($id, $this->input->post('name'));
             $_SESSION['auth_message'] = 'Project updated.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$this->data['user_project']['user_id']);
         }
     }
 

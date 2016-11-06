@@ -7,7 +7,7 @@
             </div>  
             <div class="panel-body" >
                 <form class="form-horizontal" method="post" accept-charset="utf-8"
-                    action="<?php echo base_url("index.php/profile/edit_publication/".$id); ?>">
+                    action="<?php echo base_url("index.php/profile/edit_publication/".$user_publication['id']); ?>">
                     <?php
                         if (form_error('name')!='') {
                             echo '<div class="col-md-12 alert alert-danger">
@@ -22,7 +22,7 @@
                         <label for="name" class="col-md-3 control-label">Name</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="name" placeholder="Name of the publication"
-                                value="<?php echo $publication_name ?>">
+                                value="<?php echo $user_publication['publication_name'] ?>">
                         </div>
                     </div>
 
@@ -35,7 +35,7 @@
                     
                 <div id="footeradd">
                     <div class="text-center">
-                        Back to the <?php echo anchor('profile', 'Profile page');?>
+                        Back to the <?php echo anchor('profile/edit/'.$user_publication['user_id'], 'Profile page');?>
                     </div>
                 </div>
             </div>
