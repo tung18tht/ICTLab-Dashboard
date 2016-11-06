@@ -7,7 +7,7 @@
             </div>  
             <div class="panel-body" >
                 <form class="form-horizontal" method="post" accept-charset="utf-8"
-                    action="<?php echo base_url("index.php/profile/add_student"); ?>">
+                    action="<?php echo base_url("index.php/profile/add_student/".$edit_user['id']); ?>">
                     <?php
                         if (form_error('name')!='') {
                             echo '<div class="col-md-12 alert alert-danger">
@@ -34,7 +34,7 @@
                     
                 <div id="footeradd">
                     <div class="text-center">
-                        Back to the <?php echo anchor('profile', 'Profile page');?>
+                        Back to the <?php echo anchor('profile/'.$edit_user['id'], 'Profile page');?>
                     </div>
                 </div>
             </div>

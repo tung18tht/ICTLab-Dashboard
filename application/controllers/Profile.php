@@ -34,7 +34,7 @@ class Profile extends Auth_Controller {
         $check = 0;
         if ($this->ion_auth->is_admin()) {
             $check = 1;
-        } elseif (!$this->data['user']->id===$id) {
+        } elseif (!($this->data['user']->id===$id)) {
             $check = 2;
         }
         switch ($check) {
@@ -87,7 +87,7 @@ class Profile extends Auth_Controller {
 
             $_SESSION['auth_message'] = 'Changes saved.';
             $this->session->mark_as_flash('auth_message');
-            redirect('profile/edit'.$id);
+            redirect('profile/edit/'.$id);
         }
     }
 
@@ -95,7 +95,7 @@ class Profile extends Auth_Controller {
         $check = 0;
         if ($this->ion_auth->is_admin()) {
             $check = 1;
-        } elseif (!$this->data['user']->id===$id) {
+        } elseif (!($this->data['user']->id===$id)) {
             $check = 2;
         }
         switch ($check) {
@@ -128,7 +128,7 @@ class Profile extends Auth_Controller {
     }
 
     public function change_password($id) {
-        if (!$this->data['user']->id===$id) {
+        if (!($this->data['user']->id===$id)) {
             redirect("profile/view/".$id);
         }
 
@@ -159,8 +159,25 @@ class Profile extends Auth_Controller {
         }
     }
 
-    public function add_publication() {
+    public function add_publication($id) {
+        $check = 0;
+        if ($this->ion_auth->is_admin()) {
+            $check = 1;
+        } elseif (!($this->data['user']->id===$id)) {
+            $check = 2;
+        }
+        switch ($check) {
+            case 1:
+                break;
+
+            case 2:
+                redirect("profile/view/".$id);
+                break;
+        }
+
         $this->data['page_title'] = "Add publication";
+
+        $this->data['edit_user'] = $this->profile_model->get_user($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -168,15 +185,32 @@ class Profile extends Auth_Controller {
             $this->load->helper('form');
             $this->render('profile/add_publication_view');
         } else {
-            $this->profile_model->add_publication($this->input->post('name'));
+            $this->profile_model->add_publication($id, $this->input->post('name'));
             $_SESSION['auth_message'] = 'New publication added.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$id);
         }
     }
 
-    public function add_student() {
+    public function add_student($id) {
+        $check = 0;
+        if ($this->ion_auth->is_admin()) {
+            $check = 1;
+        } elseif (!($this->data['user']->id===$id)) {
+            $check = 2;
+        }
+        switch ($check) {
+            case 1:
+                break;
+
+            case 2:
+                redirect("profile/view/".$id);
+                break;
+        }
+
         $this->data['page_title'] = "Add student";
+
+        $this->data['edit_user'] = $this->profile_model->get_user($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -184,15 +218,32 @@ class Profile extends Auth_Controller {
             $this->load->helper('form');
             $this->render('profile/add_student_view');
         } else {
-            $this->profile_model->add_student($this->input->post('name'));
+            $this->profile_model->add_student($id, $this->input->post('name'));
             $_SESSION['auth_message'] = 'New supervised student added.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$id);
         }
     }
 
-    public function add_project() {
+    public function add_project($id) {
+        $check = 0;
+        if ($this->ion_auth->is_admin()) {
+            $check = 1;
+        } elseif (!($this->data['user']->id===$id)) {
+            $check = 2;
+        }
+        switch ($check) {
+            case 1:
+                break;
+
+            case 2:
+                redirect("profile/view/".$id);
+                break;
+        }
+
         $this->data['page_title'] = "Add project";
+
+        $this->data['edit_user'] = $this->profile_model->get_user($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -200,10 +251,10 @@ class Profile extends Auth_Controller {
             $this->load->helper('form');
             $this->render('profile/add_project_view');
         } else {
-            $this->profile_model->add_project($this->input->post('name'));
+            $this->profile_model->add_project($id, $this->input->post('name'));
             $_SESSION['auth_message'] = 'New research project added.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$id);
         }
     }
 

@@ -57,26 +57,26 @@ class Profile_Model extends Ion_auth_model {
         return $this->db->get_where('users_projects', array('id' => $id))->row_array()['project_name'];
     }
 
-    public function add_publication($name) {
+    public function add_publication($id, $name) {
         $data = array(
             'publication_name' => $name,
-            'user_id' => $this->user()->row()->id
+            'user_id' => $id
         );
         $this->db->insert('users_publications',$data);
     }
 
-    public function add_student($name) {
+    public function add_student($id, $name) {
         $data = array(
             'student_name' => $name,
-            'user_id' => $this->user()->row()->id
+            'user_id' => $id
         );
         $this->db->insert('users_students',$data);
     }
 
-    public function add_project($name) {
+    public function add_project($id, $name) {
         $data = array(
             'project_name' => $name,
-            'user_id' => $this->user()->row()->id
+            'user_id' => $id
         );
         $this->db->insert('users_projects',$data);
     }

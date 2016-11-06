@@ -15,7 +15,7 @@
                     <input type="submit" value="Upload" class="btn btn-info"/>
                     <?php 
                         if ($user->id===$edit_user['id']) {
-                            echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger'));
+                            echo anchor('profile/change_password/'.$user->id, 'Change password', array('class' => 'btn btn-danger'));
                         }
                     ?>
                 </div>
@@ -99,7 +99,7 @@
             <h3>Publications</h3>
             <hr>
             <table class="table table-striped table-bordered">
-                <?php foreach($publications as $publication){ ?>
+                <?php foreach($edit_publications as $publication){ ?>
                 <tr>
                     <td><?php echo $publication['publication_name']; ?></td>
                     <td id="table_buttons">
@@ -117,7 +117,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2">
-                        <a href="<?php echo base_url("index.php/profile/add_publication"); ?>"
+                        <a href="<?php echo base_url("index.php/profile/add_publication/".$edit_user['id']); ?>"
                             class="btn btn-success btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> Add
                         </a>
@@ -128,7 +128,7 @@
             <h3>Supervised Students</h3>
             <hr>
             <table class="table table-striped table-bordered">
-                <?php foreach($students as $student){ ?>
+                <?php foreach($edit_students as $student){ ?>
                 <tr>
                     <td><?php echo $student['student_name']; ?></td>
                     <td id="table_buttons">
@@ -146,7 +146,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2">
-                        <a href="<?php echo base_url("index.php/profile/add_student"); ?>"
+                        <a href="<?php echo base_url("index.php/profile/add_student/".$edit_user['id']); ?>"
                             class="btn btn-success btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> Add
                         </a>
@@ -157,7 +157,7 @@
             <h3>Research Projects</h3>
             <hr>
             <table class="table table-striped table-bordered">
-                <?php foreach($projects as $project){ ?>
+                <?php foreach($edit_projects as $project){ ?>
                 <tr>
                     <td><?php echo $project['project_name']; ?></td>
                     <td id="table_buttons">
@@ -175,7 +175,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2">
-                        <a href="<?php echo base_url("index.php/profile/add_project"); ?>"
+                        <a href="<?php echo base_url("index.php/profile/add_project/".$edit_user['id']); ?>"
                             class="btn btn-success btn-sm">
                             <span class="glyphicon glyphicon-plus"></span> Add
                         </a>

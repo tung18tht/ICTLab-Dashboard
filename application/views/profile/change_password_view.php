@@ -7,7 +7,7 @@
             </div>  
             <div class="panel-body" >
                 <form class="form-horizontal" method="post" accept-charset="utf-8"
-                    action="<?php echo base_url("index.php/profile/change_password"); ?>">
+                    action="<?php echo base_url("index.php/profile/change_password/".$user->id); ?>">
                     <?php
                         if ((form_error('old_password')!='') ||
                             (form_error('password')!='') ||
