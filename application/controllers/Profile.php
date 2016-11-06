@@ -331,44 +331,47 @@ class Profile extends Auth_Controller {
     }
 
     public function delete_publication($id) {
-        if (!$this->profile_model->is_publication_belong_user($id)) {
+        if (!$this->profile_model->can_edit_publication($this->data['user']->id, $id)) {
             $_SESSION['auth_message'] = 'Wrong authentication.';
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
         }
 
+        $user_id = $this->profile_model->get_publication_row($id)['user_id'];
         $this->profile_model->delete_publication($id);
         
         $_SESSION['auth_message'] = 'Publication deleted.';
         $this->session->mark_as_flash('auth_message');
-        redirect("profile");
+        redirect("profile/edit/".$user_id);
     }
 
     public function delete_student($id) {
-        if (!$this->profile_model->is_student_belong_user($id)) {
+        if (!$this->profile_model->can_edit_student($this->data['user']->id, $id)) {
             $_SESSION['auth_message'] = 'Wrong authentication.';
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
         }
 
+        $user_id = $this->profile_model->get_student_row($id)['user_id'];
         $this->profile_model->delete_student($id);
         
         $_SESSION['auth_message'] = 'Student deleted.';
         $this->session->mark_as_flash('auth_message');
-        redirect("profile");
+        redirect("profile/edit/".$user_id);
     }
 
     public function delete_project($id) {
-        if (!$this->profile_model->is_project_belong_user($id)) {
+        if (!$this->profile_model->can_edit_project($this->data['user']->id, $id)) {
             $_SESSION['auth_message'] = 'Wrong authentication.';
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
         }
 
+        $user_id = $this->profile_model->get_project_row($id)['user_id'];
         $this->profile_model->delete_project($id);
         
         $_SESSION['auth_message'] = 'Project deleted.';
         $this->session->mark_as_flash('auth_message');
-        redirect("profile");
+        redirect("profile/edit/".$user_id);
     }
 }
