@@ -233,4 +233,32 @@ class Profile extends Auth_Controller {
         $this->session->mark_as_flash('auth_message');
         redirect("profile");
     }
+
+    public function delete_student($id) {
+        if (!$this->profile_model->is_student_belong_user($id)) {
+            $_SESSION['auth_message'] = 'Wrong authentication.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+
+        $this->profile_model->delete_student($id);
+        
+        $_SESSION['auth_message'] = 'Student deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("profile");
+    }
+
+    public function delete_project($id) {
+        if (!$this->profile_model->is_project_belong_user($id)) {
+            $_SESSION['auth_message'] = 'Wrong authentication.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+
+        $this->profile_model->delete_project($id);
+        
+        $_SESSION['auth_message'] = 'Project deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("profile");
+    }
 }

@@ -104,7 +104,8 @@
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                         <a href="<?php echo base_url("index.php/profile/delete_publication/".$publication['id']); ?>"
-                            class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete">
+                            class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"
+                            data-toggle="tooltip" title="Delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
@@ -132,7 +133,8 @@
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                         <a href="<?php echo base_url("index.php/profile/delete_student/".$student['id']); ?>"
-                            class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete">
+                            class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"
+                            data-toggle="tooltip" title="Delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
@@ -160,7 +162,8 @@
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                         <a href="<?php echo base_url("index.php/profile/delete_project/".$project['id']); ?>"
-                            class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete">
+                            class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"
+                            data-toggle="tooltip" title="Delete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
