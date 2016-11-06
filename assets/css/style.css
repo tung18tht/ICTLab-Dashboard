@@ -88,6 +88,10 @@
     cursor: pointer;
 }
 
+#table_buttons {
+    width: 89px;
+}
+
 /* Chage password page */
 
 #changepassbox {
@@ -95,6 +99,17 @@
 }
 
 #footerprofile {
+    border-top: 1px solid #BBB;
+    padding-top:15px;
+}
+
+/* Add new pages */
+
+#addbox {
+    margin-top:50px;
+}
+
+#footeradd {
     border-top: 1px solid #BBB;
     padding-top:15px;
 }

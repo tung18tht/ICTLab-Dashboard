@@ -3,11 +3,11 @@
     <div id="addbox" class="col-md-8 col-md-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">Add new publication</div>
+                <div class="panel-title">Add new supervised student</div>
             </div>  
             <div class="panel-body" >
                 <form class="form-horizontal" method="post" accept-charset="utf-8"
-                    action="<?php echo base_url("index.php/profile/add_publication"); ?>">
+                    action="<?php echo base_url("index.php/profile/add_student"); ?>">
                     <?php
                         if (form_error('name')!='') {
                             echo '<div class="col-md-12 alert alert-danger">
@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label for="name" class="col-md-3 control-label">Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="name" placeholder="Name of the publication">
+                            <input type="text" class="form-control" name="name" placeholder="Name of the student">
                         </div>
                     </div>
 

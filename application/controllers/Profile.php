@@ -16,9 +16,9 @@ class Profile extends Auth_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
         $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-        $this->form_validation->set_rules('title', 'Title','trim|required');
-        $this->form_validation->set_rules('position', 'Position','trim|required');
-        $this->form_validation->set_rules('affiliation','Affiliation','trim|required');
+        $this->form_validation->set_rules('title', 'Title','trim');
+        $this->form_validation->set_rules('position', 'Position','trim');
+        $this->form_validation->set_rules('affiliation','Affiliation','trim');
 
         if($this->form_validation->run()===FALSE) {
             $this->load->helper('form');
@@ -94,6 +94,78 @@ class Profile extends Auth_Controller {
                 $this->session->mark_as_flash('auth_message');
                 redirect("profile/change_password");
             }
+        }
+    }
+
+    public function add_publication() {
+        $this->data['page_title'] = "Add publication";
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/add_publication_view');
+        } else {
+            $this->profile_model->add_publication($this->input->post('name'));
+            $_SESSION['auth_message'] = 'New publication added.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+    }
+
+    public function add_student() {
+        $this->data['page_title'] = "Add student";
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/add_student_view');
+        } else {
+            $this->profile_model->add_student($this->input->post('name'));
+            $_SESSION['auth_message'] = 'New supervised student added.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+    }
+
+    public function add_project() {
+        $this->data['page_title'] = "Add project";
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/add_project_view');
+        } else {
+            $this->profile_model->add_project($this->input->post('name'));
+            $_SESSION['auth_message'] = 'New research project added.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+    }
+
+    public function edit_publication($id) {
+        if (!$this->profile_model->is_publication_belong_user($id)) {
+            $_SESSION['auth_message'] = 'Wrong authentication.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+
+        $this->data['page_title'] = "Edit publication";
+
+        $this->data['publication_name'] = $this->profile_model->get_publication_name($id);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/edit_publication_view');
+        } else {
+            $this->profile_model->update_publication($id, $this->input->post('name'));
+            $_SESSION['auth_message'] = 'Publication updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
         }
     }
 }
