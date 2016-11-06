@@ -315,7 +315,7 @@ class Profile extends Auth_Controller {
 
         $this->data['page_title'] = "Edit project";
 
-        $this->data['user_student'] = $this->profile_model->get_project_row($id);
+        $this->data['user_project'] = $this->profile_model->get_project_row($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
