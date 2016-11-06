@@ -6,6 +6,14 @@ class Profile_Model extends Ion_auth_model {
         parent::__construct();
     }
 
+    public function get_user($id) {
+
+    }
+
+    public function get_profile($id) {
+
+    }
+
     public function create_profile() {
         $this->db->insert('profile', array('user_id' => $this->user()->row()->id));
     }

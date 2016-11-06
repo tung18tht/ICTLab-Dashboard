@@ -48,6 +48,17 @@ class Profile extends Auth_Controller {
         }
     }
 
+    public function view($id) {
+        $this->data['page_title'] = 'Profile';
+
+        $this->data['view_user'] = $this->profile_model->get_user($id);
+        $this->data['view_profile'] = $this->profile_model->get_profile($id);
+
+        $this->data['view_avatar'] = ($this->data['view_profile']['has_avatar']==0) ? 0 : $id;
+
+        $this->render('profile/view_view');
+    }
+
     public function upload_avatar() {
         $config['upload_path'] = 'assets/avatar/';
         $config['allowed_types'] = 'jpg|png';

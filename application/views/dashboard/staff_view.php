@@ -8,6 +8,7 @@
 
             <?php foreach($group['staffs'] as $staff) { ?>
                 <div class="col-lg-4 col-sm-6 text-center">
+                    <a href="<?php echo base_url("index.php/profile/view/".$staff['user_id']) ?>" id="profile_link">
                     <img class="img-circle img-responsive img-center img-thumbnail" alt="avatar"
                         src="
                         <?php
@@ -19,6 +20,7 @@
                         <?php echo $staff['first_name'] . " " . $staff['last_name']; ?>
                         <small><?php echo $staff['title'] ?></small>
                     </h3>
+                    </a>
                 </div>
             <?php } ?>
         <?php } ?>

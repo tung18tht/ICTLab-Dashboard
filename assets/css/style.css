@@ -81,6 +81,10 @@
     height: auto;
 }
 
+#profile_link:hover {
+    text-decoration: none;
+}
+
 /* Profile page*/
 
 #avatar {
