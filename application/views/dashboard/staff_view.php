@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <?php foreach($position_groups as $group) { ?>
-            <div class="col-lg-12">
+            <div class="col-xs-12">
                 <h2 class="page-header"><?php echo $group['name']; ?></h2>
             </div>
 
