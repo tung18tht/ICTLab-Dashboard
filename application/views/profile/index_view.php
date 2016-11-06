@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row" style="margin-top: 25px">
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-xs-12">
             <div class="text-center">
                 <img src="<?php echo base_url("assets/avatar/".$avatar.".png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
             </div>
@@ -17,7 +17,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+        <div class="col-md-8 col-xs-12 personal-info">
             <h3>Personal info</h3>
             <hr>
             <form class="form-horizontal" method="post" accept-charset="utf-8"
@@ -98,12 +98,26 @@
                 <?php foreach($publications as $publication){ ?>
                 <tr>
                     <td><?php echo $publication['publication_name']; ?></td>
-                    <td>
-                        <a href="<?php echo site_url('users_publication/edit/'); ?>" class="btn btn-info">Edit</a> 
-                        <a href="<?php echo site_url('users_publication/remove/'); ?>" class="btn btn-danger">Delete</a>
+                    <td id="table_buttons">
+                        <a href="<?php echo base_url("index.php/profile/edit_publication/".$publication['id']); ?>"
+                            class="btn btn-info btn-sm" data-toggle="tooltip" title="Edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="<?php echo base_url("index.php/profile/delete_publication/".$publication['id']); ?>"
+                            class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
                     </td>
                 </tr>
                 <?php } ?>
+                <tr>
+                    <td colspan="2">
+                        <a href="<?php echo base_url("index.php/profile/add_publication"); ?>"
+                            class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span> Add
+                        </a>
+                    </td>
+                </tr>
             </table>
 
             <h3>Supervised Students</h3>
@@ -112,12 +126,26 @@
                 <?php foreach($students as $student){ ?>
                 <tr>
                     <td><?php echo $student['student_name']; ?></td>
-                    <td>
-                        <a href="<?php echo site_url('users_publication/edit/'); ?>" class="btn btn-info">Edit</a> 
-                        <a href="<?php echo site_url('users_publication/remove/'); ?>" class="btn btn-danger">Delete</a>
+                    <td id="table_buttons">
+                        <a href="<?php echo base_url("index.php/profile/edit_student/".$student['id']); ?>"
+                            class="btn btn-info btn-sm" data-toggle="tooltip" title="Edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="<?php echo base_url("index.php/profile/delete_student/".$student['id']); ?>"
+                            class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
                     </td>
                 </tr>
                 <?php } ?>
+                <tr>
+                    <td colspan="2">
+                        <a href="<?php echo base_url("index.php/profile/add_student"); ?>"
+                            class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span> Add
+                        </a>
+                    </td>
+                </tr>
             </table>
 
             <h3>Research Projects</h3>
@@ -126,12 +154,26 @@
                 <?php foreach($projects as $project){ ?>
                 <tr>
                     <td><?php echo $project['project_name']; ?></td>
-                    <td>
-                        <a href="<?php echo site_url('users_publication/edit/'); ?>" class="btn btn-info">Edit</a> 
-                        <a href="<?php echo site_url('users_publication/remove/'); ?>" class="btn btn-danger">Delete</a>
+                    <td id="table_buttons">
+                        <a href="<?php echo base_url("index.php/profile/edit_project/".$project['id']); ?>"
+                            class="btn btn-info btn-sm" data-toggle="tooltip" title="Edit">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="<?php echo base_url("index.php/profile/delete_project/".$project['id']); ?>"
+                            class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
                     </td>
                 </tr>
                 <?php } ?>
+                <tr>
+                    <td colspan="2">
+                        <a href="<?php echo base_url("index.php/profile/add_project"); ?>"
+                            class="btn btn-success btn-sm">
+                            <span class="glyphicon glyphicon-plus"></span> Add
+                        </a>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
