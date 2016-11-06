@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="container">
     <div class="row">
-        <?php foreach($groups as $group) { ?>
+        <?php foreach($position_groups as $group) { ?>
             <div class="col-lg-12">
                 <h2 class="page-header"><?php echo $group['group_name']; ?></h2>
             </div>

@@ -11,6 +11,9 @@ class Dashboard extends Auth_Controller {
     public function staff() {
         $this->data['page_title'] = 'Staffs';
 
+        $this->load->model('staff_model');
+        $this->data['position_groups'] = $this->staff_model->get_staffs_in_position_groups();
+
         $this->render('dashboard/staff_view');
     }
 }
