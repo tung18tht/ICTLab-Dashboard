@@ -4,16 +4,20 @@
     <div class="row" style="margin-top: 25px">
         <div class="col-md-4 col-xs-12">
             <div class="text-center">
-                <img src="<?php echo base_url("assets/avatar/".$avatar.".png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
+                <img src="<?php echo base_url("assets/avatar/".$edit_avatar.".png"); ?>" id="avatar" class="img-circle img-thumbnail" alt="avatar">
             </div>
             <form class="form-horizontal" method="post" enctype="multipart/form-data"
-                action="<?php echo base_url("index.php/profile/upload_avatar"); ?>">
+                action="<?php echo base_url("index.php/profile/upload_avatar/".$edit_user['id']); ?>">
                 <div class="text-center">
 
                     <input type="file" class="text-center center-block well well-sm" name="avatar"/>
 
                     <input type="submit" value="Upload" class="btn btn-info"/>
-                    <?php echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger')); ?>
+                    <?php 
+                        if ($user->id===$edit_user['id']) {
+                            echo anchor('profile/change_password', 'Change password', array('class' => 'btn btn-danger'));
+                        }
+                    ?>
                 </div>
             </form>
         </div>
@@ -21,7 +25,7 @@
             <h3>Personal info</h3>
             <hr>
             <form class="form-horizontal" method="post" accept-charset="utf-8"
-                action="<?php echo base_url("index.php/profile"); ?>">
+                action="<?php echo base_url("index.php/profile/edit/".$edit_user['id']); ?>">
                 <?php
                     if ((form_error('first_name')!='') ||
                         (form_error('last_name')!='') ||
@@ -44,42 +48,42 @@
                     <label for="email" class="col-lg-3 control-label">Email</label>
                     <div class="col-lg-8">
                         <input readonly class="form-control" type="email" name="email"
-                            value= "<?php echo $user->email; ?>">
+                            value= "<?php echo $edit_user['email']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="first_name" class="col-lg-3 control-label">First name</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="first_name"
-                            value= "<?php echo $user->first_name; ?>">
+                            value= "<?php echo $edit_user['first_name']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="last_name" class="col-lg-3 control-label">Last name</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="last_name"
-                            value= "<?php echo $user->last_name; ?>">
+                            value= "<?php echo $edit_user['last_name']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="title" class="col-lg-3 control-label">Title</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="title"
-                            value= "<?php echo $profile['title']; ?>">
+                            value= "<?php echo $edit_profile['title']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="position" class="col-lg-3 control-label">Position</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="position"
-                            value= "<?php echo $profile['position']; ?>">
+                            value= "<?php echo $edit_profile['position']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="affiliation" class="col-lg-3 control-label">Affiliation</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="affiliation"
-                            value= "<?php echo $profile['affiliation']; ?>">
+                            value= "<?php echo $edit_profile['affiliation']; ?>">
                     </div>
                 </div>
                 <div class="form-group">

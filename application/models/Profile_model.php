@@ -24,21 +24,17 @@ class Profile_Model extends Ion_auth_model {
         return $this->get_profile($this->user()->row()->id);
     }
 
-    public function update_profile($user_data, $profile_data) {
-        $this->db->update('users', $user_data, "id = " . $this->user()->row()->id);
-        $this->db->update('profile', $profile_data, "user_id = " . $this->user()->row()->id);
+    public function update_profile($id, $user_data, $profile_data) {
+        $this->db->update('users', $user_data, "id = " . $id);
+        $this->db->update('profile', $profile_data, "user_id = " . $id);
     }
 
-    public function set_avatar() {
-        $this->db->update('profile', array('has_avatar' => 1), "user_id = " . $this->user()->row()->id);
+    public function set_avatar($id) {
+        $this->db->update('profile', array('has_avatar' => 1), "user_id = " . $id);
     }
 
     public function get_publications($id) {
         return $this->db->get_where('users_publications', array('user_id' => $id))->result_array();
-    }
-
-    public function publications() {
-        return $this->get_publications($this->user()->row()->id);
     }
 
     public function get_publication_name($id) {
@@ -49,20 +45,12 @@ class Profile_Model extends Ion_auth_model {
         return $this->db->get_where('users_students', array('user_id' => $id))->result_array();
     }
 
-    public function students() {
-        return $this->get_students($this->user()->row()->id);
-    }
-
     public function get_student_name($id) {
         return $this->db->get_where('users_students', array('id' => $id))->row_array()['student_name'];
     }
 
     public function get_projects($id) {
         return $this->db->get_where('users_projects', array('user_id' => $id))->result_array();
-    }
-
-    public function projects() {
-        return $this->get_projects($this->user()->row()->id);
     }
 
     public function get_project_name($id) {

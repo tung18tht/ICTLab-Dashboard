@@ -7,11 +7,54 @@ class Profile extends Auth_Controller {
     }
 
     public function index() {
+        redirect("profile/edit/" . $this->data['user']->id);
+    }
+
+    public function view($id) {
+        if ($this->data['user']->id===$id) {
+            redirect("profile");
+        } elseif ($this->ion_auth->is_admin()) {
+            redirect("profile/edit/".$id);
+        }
+
         $this->data['page_title'] = 'Profile';
 
-        $this->data['publications'] = $this->profile_model->publications();
-        $this->data['students'] = $this->profile_model->students();
-        $this->data['projects'] = $this->profile_model->projects();
+        $this->data['view_user'] = $this->profile_model->get_user($id);
+        $this->data['view_profile'] = $this->profile_model->get_profile($id);
+        $this->data['view_avatar'] = ($this->data['view_profile']['has_avatar']==0) ? 0 : $id;
+
+        $this->data['view_publications'] = $this->profile_model->get_publications($id);
+        $this->data['view_students'] = $this->profile_model->get_students($id);
+        $this->data['view_projects'] = $this->profile_model->get_projects($id);
+
+        $this->render('profile/view_view');
+    }
+
+    public function edit($id) {
+        $check = 0;
+        if ($this->ion_auth->is_admin()) {
+            $check = 1;
+        } elseif (!$this->data['user']->id===$id) {
+            $check = 2;
+        }
+        switch ($check) {
+            case 1:
+                break;
+
+            case 2:
+                redirect("profile/view/".$id);
+                break;
+        }
+
+        $this->data['page_title'] = 'Profile';
+
+        $this->data['edit_user'] = $this->profile_model->get_user($id);
+        $this->data['edit_profile'] = $this->profile_model->get_profile($id);
+        $this->data['edit_avatar'] = ($this->data['edit_profile']['has_avatar']==0) ? 0 : $id;
+
+        $this->data['edit_publications'] = $this->profile_model->get_publications($id);
+        $this->data['edit_students'] = $this->profile_model->get_students($id);
+        $this->data['edit_projects'] = $this->profile_model->get_projects($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('first_name', 'First name','trim|required');
@@ -22,7 +65,7 @@ class Profile extends Auth_Controller {
 
         if($this->form_validation->run()===FALSE) {
             $this->load->helper('form');
-            $this->render('profile/index_view');
+            $this->render('profile/edit_view');
         } else {
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
@@ -40,36 +83,33 @@ class Profile extends Auth_Controller {
                 'affiliation' => $affiliation
             );
 
-            $this->profile_model->update_profile($user_data, $profile_data);
+            $this->profile_model->update_profile($id, $user_data, $profile_data);
 
             $_SESSION['auth_message'] = 'Changes saved.';
             $this->session->mark_as_flash('auth_message');
-            redirect('profile');
+            redirect('profile/edit'.$id);
         }
     }
 
-    public function view($id) {
-        if ($this->data['user']->id===$id) {
-            redirect("profile");
+    public function upload_avatar($id) {
+        $check = 0;
+        if ($this->ion_auth->is_admin()) {
+            $check = 1;
+        } elseif (!$this->data['user']->id===$id) {
+            $check = 2;
+        }
+        switch ($check) {
+            case 1:
+                break;
+
+            case 2:
+                redirect("profile/view/".$id);
+                break;
         }
 
-        $this->data['page_title'] = 'Profile';
-
-        $this->data['view_user'] = $this->profile_model->get_user($id);
-        $this->data['view_profile'] = $this->profile_model->get_profile($id);
-        $this->data['view_avatar'] = ($this->data['view_profile']['has_avatar']==0) ? 0 : $id;
-
-        $this->data['view_publications'] = $this->profile_model->get_publications($id);
-        $this->data['view_students'] = $this->profile_model->get_students($id);
-        $this->data['view_projects'] = $this->profile_model->get_projects($id);
-
-        $this->render('profile/view_view');
-    }
-
-    public function upload_avatar() {
         $config['upload_path'] = 'assets/avatar/';
         $config['allowed_types'] = 'jpg|png';
-        $config['file_name'] = $this->data['user']->id . '.png';
+        $config['file_name'] = $id . '.png';
         $config['overwrite'] = TRUE;
         $config['max_size'] = '2048';
 
@@ -78,16 +118,20 @@ class Profile extends Auth_Controller {
         if (!$this->upload->do_upload('avatar')) {
             $_SESSION['auth_message'] = $this->upload->display_errors('','');
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$id);
         } else {
             $this->profile_model->set_avatar();
             $_SESSION['auth_message'] = 'Profile picture changed.';
             $this->session->mark_as_flash('auth_message');
-            redirect("profile");
+            redirect("profile/edit/".$id);
         }
     }
 
-    public function change_password() {
+    public function change_password($id) {
+        if (!$this->data['user']->id===$id) {
+            redirect("profile/view/".$id);
+        }
+
         $this->data['page_title'] = 'Change password';
         
         $this->load->library('form_validation');
@@ -110,7 +154,7 @@ class Profile extends Auth_Controller {
             } else {
                 $_SESSION['auth_message'] = $this->ion_auth->errors();
                 $this->session->mark_as_flash('auth_message');
-                redirect("profile/change_password");
+                redirect("profile/change_password/".$id);
             }
         }
     }
