@@ -49,6 +49,10 @@ class Profile extends Auth_Controller {
     }
 
     public function view($id) {
+        if ($this->data['user']->id===$id) {
+            redirect("profile");
+        }
+
         $this->data['page_title'] = 'Profile';
 
         $this->data['view_user'] = $this->profile_model->get_user($id);
