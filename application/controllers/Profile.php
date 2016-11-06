@@ -155,6 +155,7 @@ class Profile extends Auth_Controller {
         $this->data['page_title'] = "Edit publication";
 
         $this->data['publication_name'] = $this->profile_model->get_publication_name($id);
+        $this->data['id'] = $id;
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'name', 'trim|required');
@@ -167,5 +168,69 @@ class Profile extends Auth_Controller {
             $this->session->mark_as_flash('auth_message');
             redirect("profile");
         }
+    }
+
+    public function edit_student($id) {
+        if (!$this->profile_model->is_student_belong_user($id)) {
+            $_SESSION['auth_message'] = 'Wrong authentication.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+
+        $this->data['page_title'] = "Edit student";
+
+        $this->data['student_name'] = $this->profile_model->get_student_name($id);
+        $this->data['id'] = $id;
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/edit_student_view');
+        } else {
+            $this->profile_model->update_student($id, $this->input->post('name'));
+            $_SESSION['auth_message'] = 'Student updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+    }
+
+    public function edit_project($id) {
+        if (!$this->profile_model->is_project_belong_user($id)) {
+            $_SESSION['auth_message'] = 'Wrong authentication.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+
+        $this->data['page_title'] = "Edit project";
+
+        $this->data['project_name'] = $this->profile_model->get_project_name($id);
+        $this->data['id'] = $id;
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'name', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('profile/edit_project_view');
+        } else {
+            $this->profile_model->update_project($id, $this->input->post('name'));
+            $_SESSION['auth_message'] = 'Project updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+    }
+
+    public function delete_publication($id) {
+        if (!$this->profile_model->is_publication_belong_user($id)) {
+            $_SESSION['auth_message'] = 'Wrong authentication.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile");
+        }
+
+        $this->profile_model->delete_publication($id);
+        
+        $_SESSION['auth_message'] = 'Publication deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("profile");
     }
 }

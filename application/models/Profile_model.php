@@ -29,7 +29,7 @@ class Profile_Model extends Ion_auth_model {
     }
 
     public function get_publication_name($id) {
-        return $this->db->get_where('users_publications', array('id' => $id))->result_array()->publication_name;
+        return $this->db->get_where('users_publications', array('id' => $id))->row_array()['publication_name'];
     }
 
     public function get_students() {
@@ -37,7 +37,7 @@ class Profile_Model extends Ion_auth_model {
     }
 
     public function get_student_name($id) {
-        return $this->db->get_where('users_students', array('id' => $id))->result_array()->student_name;
+        return $this->db->get_where('users_students', array('id' => $id))->row_array()['student_name'];
     }
 
     public function get_projects() {
@@ -45,7 +45,7 @@ class Profile_Model extends Ion_auth_model {
     }
 
     public function get_project_name($id) {
-        return $this->db->get_where('users_projects', array('id' => $id))->result_array()->project_name;
+        return $this->db->get_where('users_projects', array('id' => $id))->row_array()['project_name'];
     }
 
     public function add_publication($name) {
@@ -73,17 +73,17 @@ class Profile_Model extends Ion_auth_model {
     }
 
     public function is_publication_belong_user($id) {
-        $user_id = $this->db->get_where('users_publications', array('id' => $id))->result_array()->user_id;
-        return ($this->user()->row()->id == $user_id) ? TRUE : FALSE;
+        $user_id = $this->db->get_where('users_publications', array('id' => $id))->row_array()['user_id'];
+        return ($this->user()->row()->id === $user_id) ? TRUE : FALSE;
     }
 
     public function is_student_belong_user($id) {
-        $user_id = $this->db->get_where('users_students', array('id' => $id))->result_array()->user_id;
+        $user_id = $this->db->get_where('users_students', array('id' => $id))->row_array()['user_id'];
         return ($this->user()->row()->id == $user_id) ? TRUE : FALSE;
     }
 
     public function is_project_belong_user($id) {
-        $user_id = $this->db->get_where('users_projects', array('id' => $id))->result_array()->user_id;
+        $user_id = $this->db->get_where('users_projects', array('id' => $id))->row_array()['user_id'];
         return ($this->user()->row()->id == $user_id) ? TRUE : FALSE;
     }
 
@@ -97,5 +97,17 @@ class Profile_Model extends Ion_auth_model {
 
     public function update_project($id, $name) {
         $this->db->update('users_projects', array('project_name' => $name), "id = " . $id);
+    }
+
+    public function delete_publication($id) {
+        $this->db->delete('users_publications', array('id' => $id));
+    }
+
+    public function delete_student($id) {
+        $this->db->delete('users_students', array('id' => $id));
+    }
+
+    public function delete_project($id) {
+        $this->db->delete('users_projects', array('id' => $id));
     }
 }
