@@ -20,6 +20,13 @@
                     ?>
                 </div>
             </form>
+            <div id="delete_button" class="text-center">
+                <?php echo anchor('profile/delete_user/'.$edit_user['id'], 'Delete account',
+                    array('class' => 'btn btn-default',
+                          'onclick' => "return confirm('Are you sure?')")
+                    );
+                ?>
+            </div>
         </div>
         <div class="col-md-8 col-xs-12 personal-info">
             <h3>Personal info</h3>

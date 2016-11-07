@@ -27,7 +27,10 @@ class Register extends Public_Controller {
             );
  
             $this->load->library('ion_auth');
-            if($this->ion_auth->register($email,$password,$email,$additional_data)) {
+            if($id = $this->ion_auth->register($email,$password,$email,$additional_data)) {
+                $this->load->model('profile_model');
+                $this->profile_model->create_profile($id);
+
                 $_SESSION['auth_message'] = 'The account has been created. Please check your email for the activation link.';
                 $this->session->mark_as_flash('auth_message');
                 redirect('user/login');
@@ -46,9 +49,6 @@ class Register extends Public_Controller {
         else if ($this->ion_auth->is_admin())
             $activation = $this->ion_auth->activate($id);
         if ($activation) {
-            $this->load->model('profile_model');
-            $this->profile_model->create_profile();
-
             $_SESSION['auth_message'] = $this->ion_auth->messages();
             $this->session->mark_as_flash('auth_message');
             redirect("user/login");

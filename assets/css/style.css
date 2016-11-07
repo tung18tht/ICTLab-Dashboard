@@ -92,6 +92,11 @@
     height: auto;
 }
 
+#delete_button {
+    margin-top: 15px;
+    opacity: 0.5;
+}
+
 .well {
     margin-top: 10px;
 }

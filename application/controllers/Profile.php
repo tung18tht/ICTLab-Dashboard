@@ -159,6 +159,37 @@ class Profile extends Auth_Controller {
         }
     }
 
+    public function delete_user($id) {
+        $check = 0;
+        if ($this->ion_auth->is_admin()) {
+            $check = 1;
+        } elseif (!($this->data['user']->id===$id)) {
+            $check = 2;
+        }
+        switch ($check) {
+            case 1:
+                break;
+
+            case 2:
+                redirect("profile/view/".$id);
+                break;
+        }
+
+        if ($this->ion_auth->delete_user($id)) {
+            $_SESSION['auth_message'] = $this->ion_auth->messages();
+            $this->session->mark_as_flash('auth_message');
+            if($this->data['user']->id===$id) {
+                redirect("user/logout");
+            } else {
+                redirect("dashboard/staff");
+            }
+        } else {
+            $_SESSION['auth_message'] = $this->ion_auth->errors();
+            $this->session->mark_as_flash('auth_message');
+            redirect("profile/edit/".$id);
+        }
+    }
+
     public function add_publication($id) {
         $check = 0;
         if ($this->ion_auth->is_admin()) {

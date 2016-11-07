@@ -16,8 +16,8 @@ class Profile_Model extends Ion_auth_model {
         return $query->row_array();
     }
 
-    public function create_profile() {
-        $this->db->insert('profile', array('user_id' => $this->user()->row()->id));
+    public function create_profile($id) {
+        $this->db->insert('profile', array('user_id' => $id));
     }
 
     public function profile() {
