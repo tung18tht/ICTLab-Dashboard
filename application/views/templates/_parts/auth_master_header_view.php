@@ -39,8 +39,11 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><?php echo anchor('dashboard/staff', 'Staffs'); ?></li> 
-                <li><?php echo anchor('calendar', 'Calendar'); ?></li>          
+                <li><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
+                <li><?php echo anchor('calendar', 'Calendar'); ?></li>
+                <?php
+                    echo $this->ion_auth->is_admin() ? '<li>'.anchor('internal_event', 'Internal Events').'</li>' : FALSE;
+                ?>
              </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
