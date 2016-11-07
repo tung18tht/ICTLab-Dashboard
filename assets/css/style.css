@@ -179,3 +179,13 @@ div.today {
 .other {
     opacity: 0.3;
 }
+
+/* Internal events page */
+
+.place {
+    width: 20%;
+}
+
+.date {
+    width: 91px;
+}

@@ -137,7 +137,7 @@ CREATE TABLE `seminars` (
 
 DROP TABLE IF EXISTS `events`;
 
-CREATE TABLE `events` (
+CREATE TABLE `meetings` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `place` varchar(255),
