@@ -164,7 +164,11 @@
 }
 
 .calendar td:hover {
-    background: #FAFAFA;
+    background: #F6F6F6;
+}
+
+.calendar td:hover .day_listing {
+    background: #E0E0E0;
 }
 
 .day_listing {
@@ -179,6 +183,10 @@
 div.today {
     background: #E9EFFF;
     height: 100%;
+}
+
+div.today:hover .day_listing {
+    background: #C7CDFF;
 }
 
 .today .day_listing {
