@@ -18,6 +18,39 @@ class Internal_Event_Model extends CI_Model {
         return $this->db->get('discussions')->result_array();
     }
 
+    public function add_seminar($name, $place, $date, $start_time, $end_time) {
+        $data = array(
+            'name' => $name,
+            'place' => $place,
+            'date' => $date,
+            'start_time' => $start_time,
+            'end_time' => $end_time
+        );
+        $this->db->insert('seminars',$data);
+    }
+
+    public function add_meeting($name, $place, $date, $start_time, $end_time) {
+        $data = array(
+            'name' => $name,
+            'place' => $place,
+            'date' => $date,
+            'start_time' => $start_time,
+            'end_time' => $end_time
+        );
+        $this->db->insert('meetings',$data);
+    }
+
+    public function add_discussion($name, $place, $date, $start_time, $end_time) {
+        $data = array(
+            'name' => $name,
+            'place' => $place,
+            'date' => $date,
+            'start_time' => $start_time,
+            'end_time' => $end_time
+        );
+        $this->db->insert('discussions',$data);
+    }
+
     public function delete_seminar($id) {
         $this->db->delete('seminars', array('id' => $id));
     }
