@@ -130,13 +130,17 @@
 .calendar {
     font-family: Arial, Verdana, Sans-serif;
     width: 100%;
-    min-width: 960px;
+    min-width: 700px;
     border-collapse: collapse;
 }
 
 .calendar tbody tr:first-child th {
     color: #505050;
     margin: 0 0 10px 0;
+}
+
+#title_row {
+    height: 50px;
 }
 
 .day_header {
@@ -147,7 +151,7 @@
 }
 
 .calendar td {
-    width: 14%; /* Force all cells to be about the same width regardless of content */
+    width: 14%;
     border:1px solid #CCC;
     height: 100px;
     vertical-align: top;
@@ -170,4 +174,8 @@
 div.today {
     background: #E9EFF7;
     height: 100%;
+}
+
+.other {
+    opacity: 0.3;
 }
