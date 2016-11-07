@@ -120,3 +120,41 @@ CREATE TABLE `users_projects` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ICTLab internal seminars, events, discussions
+
+DROP TABLE IF EXISTS `seminars`;
+
+CREATE TABLE `seminars` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `place` varchar(255),
+  `date` DATE NOT NULL,
+  `start_time` TIME,
+  `end_time` TIME,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `events`;
+
+CREATE TABLE `events` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `place` varchar(255),
+  `date` DATE NOT NULL,
+  `start_time` TIME,
+  `end_time` TIME,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `discussions`;
+
+CREATE TABLE `discussions` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `place` varchar(255),
+  `date` DATE NOT NULL,
+  `start_time` TIME,
+  `end_time` TIME,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
