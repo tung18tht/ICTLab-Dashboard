@@ -94,6 +94,87 @@ class Internal_event extends Auth_Controller {
         }
     }
 
+    public function edit_seminar($id) {
+        $this->data['page_title'] = "Edit Seminar";
+
+        $this->data['seminar'] = $this->internal_event_model->get_seminar_row($id);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('place', 'Place', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('start_time', 'Start time', 'trim|required');
+        $this->form_validation->set_rules('end_time', 'End time', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('internal_event/edit_seminar_view');
+        } else {
+            $this->internal_event_model->update_seminar($id,
+                                                        $this->input->post('name'),
+                                                        $this->input->post('place'),
+                                                        $this->input->post('date'),
+                                                        $this->input->post('start_time'),
+                                                        $this->input->post('end_time'));
+            $_SESSION['auth_message'] = 'Seminar updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("internal_event#seminar");
+        }
+    }
+
+    public function edit_meeting($id) {
+        $this->data['page_title'] = "Edit Meeting";
+
+        $this->data['meeting'] = $this->internal_event_model->get_meeting_row($id);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('place', 'Place', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('start_time', 'Start time', 'trim|required');
+        $this->form_validation->set_rules('end_time', 'End time', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('internal_event/edit_meeting_view');
+        } else {
+            $this->internal_event_model->update_meeting($id,
+                                                        $this->input->post('name'),
+                                                        $this->input->post('place'),
+                                                        $this->input->post('date'),
+                                                        $this->input->post('start_time'),
+                                                        $this->input->post('end_time'));
+            $_SESSION['auth_message'] = 'Meeting updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("internal_event#meeting");
+        }
+    }
+
+    public function edit_discussion($id) {
+        $this->data['page_title'] = "Edit Discussion";
+
+        $this->data['discussion'] = $this->internal_event_model->get_discussion_row($id);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('place', 'Place', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('start_time', 'Start time', 'trim|required');
+        $this->form_validation->set_rules('end_time', 'End time', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('internal_event/edit_discussion_view');
+        } else {
+            $this->internal_event_model->update_seminar($id,
+                                                        $this->input->post('name'),
+                                                        $this->input->post('place'),
+                                                        $this->input->post('date'),
+                                                        $this->input->post('start_time'),
+                                                        $this->input->post('end_time'));
+            $_SESSION['auth_message'] = 'Discussion updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("internal_event#discussion");
+        }
+    }
+
     public function delete_seminar($id) {
         $this->internal_event_model->delete_seminar($id);
         

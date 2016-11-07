@@ -10,12 +10,24 @@ class Internal_Event_Model extends CI_Model {
         return $this->db->get('seminars')->result_array();
     }
 
+    public function get_seminar_row($id) {
+        return $this->db->get_where('seminars', array('id' => $id))->row_array();
+    }
+
     public function get_meetings() {
         return $this->db->get('meetings')->result_array();
     }
 
+    public function get_meeting_row($id) {
+        return $this->db->get_where('meetings', array('id' => $id))->row_array();
+    }
+
     public function get_discussions() {
         return $this->db->get('discussions')->result_array();
+    }
+
+    public function get_discussion_row($id) {
+        return $this->db->get_where('discussions', array('id' => $id))->row_array();
     }
 
     public function add_seminar($name, $place, $date, $start_time, $end_time) {
@@ -49,6 +61,39 @@ class Internal_Event_Model extends CI_Model {
             'end_time' => $end_time
         );
         $this->db->insert('discussions',$data);
+    }
+
+    public function update_seminar($id, $name, $place, $date, $start_time, $end_time) {
+        $data = array(
+            'name' => $name,
+            'place' => $place,
+            'date' => $date,
+            'start_time' => $start_time,
+            'end_time' => $end_time
+        );
+        $this->db->update('seminars', $data, "id = " . $id);
+    }
+
+    public function update_meeting($id, $name, $place, $date, $start_time, $end_time) {
+        $data = array(
+            'name' => $name,
+            'place' => $place,
+            'date' => $date,
+            'start_time' => $start_time,
+            'end_time' => $end_time
+        );
+        $this->db->update('meetings', $data, "id = " . $id);
+    }
+
+    public function update_discussion($id, $name, $place, $date, $start_time, $end_time) {
+        $data = array(
+            'name' => $name,
+            'place' => $place,
+            'date' => $date,
+            'start_time' => $start_time,
+            'end_time' => $end_time
+        );
+        $this->db->update('discussions', $data, "id = " . $id);
     }
 
     public function delete_seminar($id) {
