@@ -17,4 +17,16 @@ class Internal_Event_Model extends CI_Model {
     public function get_discussions() {
         return $this->db->get('discussions')->result_array();
     }
+
+    public function delete_seminar($id) {
+        $this->db->delete('seminars', array('id' => $id));
+    }
+
+    public function delete_meeting($id) {
+        $this->db->delete('meetings', array('id' => $id));
+    }
+
+    public function delete_discussion($id) {
+        $this->db->delete('discussions', array('id' => $id));
+    }
 }

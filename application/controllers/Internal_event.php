@@ -21,4 +21,28 @@ class Internal_event extends Auth_Controller {
 
         $this->render('internal_event/index_view');
     }
+
+    public function delete_seminar($id) {
+        $this->internal_event_model->delete_seminar($id);
+        
+        $_SESSION['auth_message'] = 'Seminar deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("internal_event#seminar");
+    }
+
+    public function delete_meeting($id) {
+        $this->internal_event_model->delete_meeting($id);
+        
+        $_SESSION['auth_message'] = 'Meeting deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("internal_event#meeting");
+    }
+
+    public function delete_discussion($id) {
+        $this->internal_event_model->delete_discussion($id);
+        
+        $_SESSION['auth_message'] = 'Discussion deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("internal_event#discussion");
+    }
 }
