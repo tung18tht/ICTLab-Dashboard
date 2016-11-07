@@ -3,7 +3,7 @@
     <div class="row">
         <?php foreach($position_groups as $group) { ?>
             <div class="col-xs-12">
-                <h2 class="page-header"><?php echo $group['name']; ?></h2>
+                <h2 class="page-header"><?php echo ($group['name']=='') ? 'Others' : $group['name']; ?></h2>
             </div>
 
             <?php foreach($group['staffs'] as $staff) { ?>
