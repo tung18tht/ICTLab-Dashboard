@@ -180,6 +180,10 @@ div.today {
     opacity: 0.3;
 }
 
+.event_name:hover {
+    cursor: pointer;
+}
+
 /* Internal events page */
 
 .place {

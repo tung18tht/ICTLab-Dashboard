@@ -11,6 +11,9 @@ class Calendar extends Auth_Controller {
     public function index($year = '', $month = '') {
         $this->data['page_title'] = 'Calendar';
 
+        $year = ($year=='') ? date('Y') : $year;
+        $month = ($month=='') ? date('m') : $month;
+
         $prefs = array(
             'start_day' => 'monday',
             'month_type' => 'long',

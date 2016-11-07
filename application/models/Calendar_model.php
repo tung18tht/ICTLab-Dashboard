@@ -13,17 +13,38 @@ class Calendar_Model extends CI_Model {
             
             $seminars = $this->get_seminar_in_date($year, $month, $i);
             foreach ($seminars as $seminar) {
-                $string .= '<span style="color:#A52A2A;">&nbsp;&#9632; ' . $seminar['name'] . '</span><br>';
+                $string .= '<span data-toggle="tooltip" data-html="true" class="event_name" style="color:#A52A2A;"
+                    title="<div class=\'text-left\'> 
+                        <span class=\'glyphicon glyphicon-check\'></span> '.$seminar['name'].'<br>
+                        <span class=\'glyphicon glyphicon-map-marker\'></span> '.$seminar['place'].'<br>
+                        <span class=\'glyphicon glyphicon-calendar\'></span> '.$seminar['date'].'<br>
+                        <span class=\'glyphicon glyphicon-time\'></span> '.$seminar['start_time'].' - '.$seminar['end_time'].'<br>
+                    </div>">
+                    &nbsp;&#9632; ' .$seminar['name'] . '</span><br>';
             }
             
             $meetings = $this->get_meeting_in_date($year, $month, $i);
             foreach ($meetings as $meeting) {
-                $string .= '<span style="color:#556B2F;">&nbsp;&#9632; ' . $meeting['name'] . '</span><br>';
+                $string .= '<span data-toggle="tooltip" data-html="true" class="event_name" style="color:#556B2F;"
+                    title="<div class=\'text-left\'> 
+                        <span class=\'glyphicon glyphicon-check\'></span> '.$meeting['name'].'<br>
+                        <span class=\'glyphicon glyphicon-map-marker\'></span> '.$meeting['place'].'<br>
+                        <span class=\'glyphicon glyphicon-calendar\'></span> '.$meeting['date'].'<br>
+                        <span class=\'glyphicon glyphicon-time\'></span> '.$meeting['start_time'].' - '.$meeting['end_time'].'<br>
+                    </div>">
+                    &nbsp;&#9632; ' .$meeting['name'] . '</span><br>';
             }
             
             $discussions = $this->get_discussion_in_date($year, $month, $i);
             foreach ($discussions as $discussion) {
-                $string .= '<span style="color:#4B0082;">&nbsp;&#9632; ' . $discussion['name'] . '</span><br>';
+                $string .= '<span data-toggle="tooltip" data-html="true" class="event_name" style="color:#4B0082;"
+                    title="<div class=\'text-left\'> 
+                        <span class=\'glyphicon glyphicon-check\'></span> '.$discussion['name'].'<br>
+                        <span class=\'glyphicon glyphicon-map-marker\'></span> '.$discussion['place'].'<br>
+                        <span class=\'glyphicon glyphicon-calendar\'></span> '.$discussion['date'].'<br>
+                        <span class=\'glyphicon glyphicon-time\'></span> '.$discussion['start_time'].' - '.$discussion['end_time'].'<br>
+                    </div>">
+                    &nbsp;&#9632; ' .$discussion['name'] . '</span><br>';
             }
 
             $data[$i] = $string;
