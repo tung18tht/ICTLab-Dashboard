@@ -30,7 +30,7 @@ class Calendar extends Auth_Controller {
             {heading_title_cell}<th class="text-center" colspan="{colspan}">{heading}</th>{/heading_title_cell}
             {heading_next_cell}<th class="text-center"><a href="{next_url}"><div style="width:100%;height:100%;"><span class="glyphicon glyphicon-chevron-right"></span></div></a></th>{/heading_next_cell}
 
-            {week_day_cell}<th class="day_header">{week_day}</th>{/week_day_cell}
+            {week_day_cell}<th class="day_header"><strong>{week_day}</strong></th>{/week_day_cell}
 
             {cal_cell_content}<span class="day_listing">{day}</span>{content}{/cal_cell_content}
             {cal_cell_content_today}<div class="today"><span class="day_listing">{day}</span>{content}</div>{/cal_cell_content_today}

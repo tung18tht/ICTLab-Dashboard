@@ -14,7 +14,7 @@
                         <?php
                             echo base_url("assets/avatar/");
                             echo ($staff['has_avatar']==0) ? 0 : $staff['user_id'];
-                            echo ".png"; 
+                            echo ".png";
                         ?>">
                     <h3>
                         <?php echo $staff['first_name'] . " " . $staff['last_name']; ?>
