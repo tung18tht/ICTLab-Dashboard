@@ -23,16 +23,16 @@ class Calendar extends Auth_Controller {
 
             {heading_row_start}<tr id="title_row">{/heading_row_start}
 
-            {heading_previous_cell}<th class="text-center"><a href="{previous_url}">&lt;&lt;</a></th>{/heading_previous_cell}
+            {heading_previous_cell}<th class="text-center"><a href="{previous_url}"><div style="width:100%;height:100%;"><span class="glyphicon glyphicon-chevron-left"></span></div></a></th>{/heading_previous_cell}
             {heading_title_cell}<th class="text-center" colspan="{colspan}">{heading}</th>{/heading_title_cell}
-            {heading_next_cell}<th class="text-center"><a href="{next_url}">&gt;&gt;</a></th>{/heading_next_cell}
+            {heading_next_cell}<th class="text-center"><a href="{next_url}"><div style="width:100%;height:100%;"><span class="glyphicon glyphicon-chevron-right"></span></div></a></th>{/heading_next_cell}
 
             {week_day_cell}<th class="day_header">{week_day}</th>{/week_day_cell}
 
-            {cal_cell_content}<span class="day_listing">{day}</span>&nbsp;&bull; {content}&nbsp;{/cal_cell_content}
-            {cal_cell_content_today}<div class="today"><span class="day_listing">{day}</span>&bull; {content}</div>{/cal_cell_content_today}
+            {cal_cell_content}<span class="day_listing">{day}</span>{content}{/cal_cell_content}
+            {cal_cell_content_today}<div class="today"><span class="day_listing">{day}</span>{content}</div>{/cal_cell_content_today}
 
-            {cal_cell_no_content}<span class="day_listing">{day}</span>&nbsp;{/cal_cell_no_content}
+            {cal_cell_no_content}<span class="day_listing">{day}</span>{/cal_cell_no_content}
             {cal_cell_no_content_today}<div class="today"><span class="day_listing">{day}</span></div>{/cal_cell_no_content_today}
 
             {cal_cell_other}<span class="day_listing other">{day}</span>&nbsp;{/cal_cell_other}
