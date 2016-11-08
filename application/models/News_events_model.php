@@ -49,7 +49,22 @@ class News_Events_Model extends CI_Model {
         $this->db->update('news', $data, "id = " . $id);
     }
 
-    public function delete_seminar($id) {
-        $this->db->delete('seminars', array('id' => $id));
+    public function update_event($id, $speaker, $topic, $location, $date, $content) {
+        $data = array(
+            'speaker' => $speaker,
+            'topic' => $topic,
+            'location' => $location,
+            'date' => $date,
+            'content' => $content
+        );
+        $this->db->update('events', $data, "id = " . $id);
+    }
+
+    public function delete_news($id) {
+        $this->db->delete('news', array('id' => $id));
+    }
+
+    public function delete_event($id) {
+        $this->db->delete('event', array('id' => $id));
     }
 }
