@@ -180,6 +180,7 @@ CREATE TABLE `news` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `content` text NOT NULL,
+  `time` datetime NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -191,15 +192,6 @@ CREATE TABLE `events` (
   `topic` varchar(255) NOT NULL,
   `location` varchar(255),
   `date` DATETIME,
-  `content` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `projects`;
-
-CREATE TABLE `projects` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
