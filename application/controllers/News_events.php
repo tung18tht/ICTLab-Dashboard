@@ -8,12 +8,13 @@ class News_events extends Auth_Controller {
         $this->load->model('news_events_model');
     }
 
-    public function news() {
-        $this->data['page_title'] = 'News';
+    public function index() {
+        $this->data['page_title'] = 'News & Events';
 
         $this->data['news'] = $this->news_events_model->get_news();
+        $this->data['events'] = $this->news_events_model->get_events();
 
-        $this->render('news_events/news_view');
+        $this->render('news_events/index_view');
     }
 
     public function view_news($id) {
@@ -22,14 +23,6 @@ class News_events extends Auth_Controller {
         $this->data['news'] = $this->news_events_model->get_news_row($id);
 
         $this->render('news_events/view_news_view');
-    }
-
-    public function events() {
-        $this->data['page_title'] = 'Events';
-
-        $this->data['events'] = $this->news_events_model->get_events();
-
-        $this->render('news_events/events_view');
     }
 
     public function view_event($id) {
@@ -42,7 +35,7 @@ class News_events extends Auth_Controller {
 
     public function add_news() {
         if (!($this->ion_auth->is_admin())) {
-            redirect("news_events/news");
+            redirect("news_events");
         }
 
         $this->data['page_title'] = "Add News";
@@ -58,13 +51,13 @@ class News_events extends Auth_Controller {
                                                $this->input->post('content'));
             $_SESSION['auth_message'] = 'News added.';
             $this->session->mark_as_flash('auth_message');
-            redirect("news_events/news");
+            redirect("news_events");
         }
     }
 
     public function add_event() {
         if (!($this->ion_auth->is_admin())) {
-            redirect("news_events/events");
+            redirect("news_events");
         }
 
         $this->data['page_title'] = "Add Event";
@@ -86,7 +79,7 @@ class News_events extends Auth_Controller {
                                                 $this->input->post('content'));
             $_SESSION['auth_message'] = 'New event added.';
             $this->session->mark_as_flash('auth_message');
-            redirect("news_events/events");
+            redirect("news_events");
         }
     }
 
@@ -107,7 +100,7 @@ class News_events extends Auth_Controller {
                                                   $this->input->post('content'));
             $_SESSION['auth_message'] = 'News updated.';
             $this->session->mark_as_flash('auth_message');
-            redirect("news_events/news");
+            redirect("news_events/view_news/".$id);
         }
     }
 
@@ -134,7 +127,7 @@ class News_events extends Auth_Controller {
                                                    $this->input->post('content'));
             $_SESSION['auth_message'] = 'Event updated.';
             $this->session->mark_as_flash('auth_message');
-            redirect("news_events/events");
+            redirect("news_events/view_event/".$id);
         }
     }
 
@@ -146,7 +139,7 @@ class News_events extends Auth_Controller {
         
         $_SESSION['auth_message'] = 'News deleted.';
         $this->session->mark_as_flash('auth_message');
-        redirect("news_events/news");
+        redirect("news_events");
     }
 
     public function delete_event($id) {
@@ -157,6 +150,6 @@ class News_events extends Auth_Controller {
         
         $_SESSION['auth_message'] = 'Event deleted.';
         $this->session->mark_as_flash('auth_message');
-        redirect("news_events/events");
+        redirect("news_events");
     }
 }

@@ -52,15 +52,7 @@
                         <li <?php echo ($page_title=='ARCHIVES') ? 'class="active"' : FALSE ?>><?php echo anchor('information/archives', 'ARCHIVES'); ?></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">News & Events
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li <?php echo ($page_title=='News') ? 'class="active"' : FALSE ?>><?php echo anchor('news_events/news', 'News'); ?></li>
-                        <li <?php echo ($page_title=='Events') ? 'class="active"' : FALSE ?>><?php echo anchor('news_events/events', 'Events'); ?></li>
-                    </ul>
-                </li>
+                <li <?php echo ($page_title=='News & Events') ? 'class="active"' : FALSE ?>><?php echo anchor('news_events', 'News & Events'); ?></li>
                 <li <?php echo ($page_title=='Calendar') ? 'class="active"' : FALSE ?>><?php echo anchor('calendar', 'Calendar'); ?></li>
                 <?php
                     if ($this->ion_auth->is_admin()) {
