@@ -1,0 +1,79 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<div class="container">
+    <div id="signupbox" class="col-md-8 col-md-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">New user</div>
+            </div>  
+            <div class="panel-body" >
+                <form class="form-horizontal" method="post" accept-charset="utf-8"
+                    action="<?php echo base_url("index.php/dashboard/add_user"); ?>">
+                    <?php
+                        if ((form_error('first_name')!='') ||
+                            (form_error('last_name')!='') ||
+                            (form_error('email')!='') ||
+                            (form_error('password')!='') ||
+                            (form_error('confirm_password')!='')
+                        ) {
+                            echo '<div class="col-md-12 alert alert-danger">
+                                      <div class="col-md-2 text-center"><strong>Errors:</strong></div>
+                                      <div class="col-md-10"><ul>';
+                            echo (form_error('first_name')!='') ? '<li>'.form_error('first_name').'</li>' : FALSE;
+                            echo (form_error('last_name')!='') ? '<li>'.form_error('last_name').'</li>' : FALSE;
+                            echo (form_error('email')!='') ? '<li>'.form_error('email').'</li>' : FALSE;
+                            echo (form_error('password')!='') ? '<li>'.form_error('password').'</li>' : FALSE;
+                            echo (form_error('confirm_password')!='') ? '<li>'.form_error('confirm_password').'</li>' : FALSE;
+                            echo '</ul></div></div>';
+                        }
+                    ?>
+                    <div class="form-group">
+                        <label for="first_name" class="col-md-3 control-label">First Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name" class="col-md-3 control-label">Last Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">Email</label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Password</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="password" placeholder="Password (8~20 characters)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password" class="col-md-3 control-label">Confirm Password</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="confirm_password" placeholder="Re-enter Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" name="add_user" class="col-md-4 btn btn-info" value="Submit">
+                        </div>
+                    </div>
+                </form>
+                    
+                <div id="footersignin">
+                    <div class="text-center">
+                        Back to the <?php echo anchor('dashboard/staff', 'Staff page');?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

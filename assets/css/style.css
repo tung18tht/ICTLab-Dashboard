@@ -85,6 +85,26 @@
     text-decoration: none;
 }
 
+#add_profile_div {
+    margin-bottom: 20px;
+}
+
+#add_profile {
+    opacity: 0.5;
+    height: 200px;
+}
+
+#add_profile:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+
+#add_profile span {
+    line-height: 185px;
+    margin-left: 8px;
+    font-size: 50px;
+}
+
 /* Profile page*/
 
 #avatar {
