@@ -21,6 +21,16 @@ class Information_Model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_swarms() {
+        $query = $this->db->get_where('information', array('name' => 'swarms'));
+        return $query->row_array();
+    }
+
+    public function get_archives() {
+        $query = $this->db->get_where('information', array('name' => 'archives'));
+        return $query->row_array();
+    }
+
     public function update_about($content) {
         $this->db->update('information', array('content' => $content), "name = 'about'");
     }
@@ -31,5 +41,13 @@ class Information_Model extends CI_Model {
 
     public function update_research_topic($content) {
         $this->db->update('information', array('content' => $content), "name = 'research_topic'");
+    }
+
+    public function update_swarms($content) {
+        $this->db->update('information', array('content' => $content), "name = 'swarms'");
+    }
+
+    public function update_research_topic($content) {
+        $this->db->update('information', array('content' => $content), "name = 'archives'");
     }
 }
