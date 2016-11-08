@@ -47,7 +47,7 @@ class Information_Model extends CI_Model {
         $this->db->update('information', array('content' => $content), "name = 'swarms'");
     }
 
-    public function update_research_topic($content) {
+    public function update_archives($content) {
         $this->db->update('information', array('content' => $content), "name = 'archives'");
     }
 }
