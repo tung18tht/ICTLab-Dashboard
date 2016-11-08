@@ -39,7 +39,10 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
+                <li><?php echo anchor('information/about', 'About'); ?></li>
+                <li><?php echo anchor('information/contact', 'Contact'); ?></li>
                 <li><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
+                <li><?php echo anchor('information/research_topic', 'Research Topic'); ?></li>
                 <li><?php echo anchor('calendar', 'Calendar'); ?></li>
                 <?php
                     echo $this->ion_auth->is_admin() ? '<li>'.anchor('internal_event', 'Internal Events').'</li>' : FALSE;
