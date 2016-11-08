@@ -6,20 +6,18 @@ class Information_Model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_staffs_in_position_groups() {
-        $position_list = $this->get_unique_position_list();
+    public function get_about() {
+        $query = $this->db->get_where('information', array('name' => 'about'));
+        return $query->row_array();
+    }
 
-        $position_groups = array();
-        foreach ($position_list as $key=>$position) {
-            $this->db->select('*');
-            $this->db->from('profile');
-            $this->db->join('users', 'user_id = id');
-            $this->db->where('position', $position);
-            $staffs = $this->db->get()->result_array();
+    public function get_contact() {
+        $query = $this->db->get_where('information', array('name' => 'contact'));
+        return $query->row_array();
+    }
 
-            $position_groups[$key] = array('name' => $position, 'staffs' => $staffs);
-        }
-
-        return $position_groups;
+    public function get_research_topic() {
+        $query = $this->db->get_where('information', array('name' => 'research_topic'));
+        return $query->row_array();
     }
 }
