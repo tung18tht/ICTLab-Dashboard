@@ -14,25 +14,85 @@ class Information extends Auth_Controller {
 
     public function about() {
         $this->data['page_title'] = "About";
-
         $this->data['content'] = $this->information_model->get_about()['content'];
-
         $this->render('information/about_view');
     }
 
     public function contact() {
         $this->data['page_title'] = "Contact";
-
         $this->data['content'] = $this->information_model->get_contact()['content'];
-        
         $this->render('information/contact_view');
     }
 
     public function research_topic() {
         $this->data['page_title'] = "Research Topics";
+        $this->data['content'] = $this->information_model->get_research_topic()['content'];
+        $this->render('information/research_topic_view');
+    }
+
+    public function edit_about() {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("information/about");
+        }
+
+        $this->data['page_title'] = "Edit About";
+
+        $this->data['content'] = $this->information_model->get_about()['content'];
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('information/edit_about_view');
+        } else {
+            $this->information_model->update_about($content);
+            $_SESSION['auth_message'] = 'About updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("information/about");
+        }
+    }
+
+    public function edit_contact() {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("information/contact");
+        }
+
+        $this->data['page_title'] = "Edit Contact";
+
+        $this->data['content'] = $this->information_model->get_contact()['content'];
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('information/edit_contact_view');
+        } else {
+            $this->information_model->update_contact($content);
+            $_SESSION['auth_message'] = 'Contact updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("information/contact");
+        }
+    }
+
+    public function edit_research_topic() {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("information/research_topic");
+        }
+
+        $this->data['page_title'] = "Edit Research Topics";
 
         $this->data['content'] = $this->information_model->get_research_topic()['content'];
         
-        $this->render('information/research_topic_view');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('information/edit_research_topic_view');
+        } else {
+            $this->information_model->update_research_topic($content);
+            $_SESSION['auth_message'] = 'Research Topics updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("information/research_topic");
+        }
     }
 }
