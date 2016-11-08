@@ -39,4 +39,26 @@ class News_events extends Auth_Controller {
 
         $this->render('news_events/view_event_view');
     }
+
+    public function delete_news($id) {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("news_events/view_news/".$id);
+        }
+        $this->news_events_model->delete_news($id);
+        
+        $_SESSION['auth_message'] = 'News deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("news_events/news");
+    }
+
+    public function delete_event($id) {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("news_events/view_event/".$id);
+        }
+        $this->news_events_model->delete_event($id);
+        
+        $_SESSION['auth_message'] = 'Event deleted.';
+        $this->session->mark_as_flash('auth_message');
+        redirect("news_events/events");
+    }
 }
