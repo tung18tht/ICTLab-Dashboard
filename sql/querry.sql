@@ -158,3 +158,43 @@ CREATE TABLE `discussions` (
   `end_time` TIME,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ICTLab public information
+
+DROP TABLE IF EXISTS `information`;
+
+CREATE TABLE `information` (
+  `name` varchar(255),
+  `content` text NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `news`;
+
+CREATE TABLE `news` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `events`;
+
+CREATE TABLE `events` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `speaker` varchar(255),
+  `topic` varchar(255) NOT NULL,
+  `location` varchar(255),
+  `date` DATETIME,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `projects`;
+
+CREATE TABLE `projects` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
