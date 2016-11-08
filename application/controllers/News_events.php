@@ -40,6 +40,83 @@ class News_events extends Auth_Controller {
         $this->render('news_events/view_event_view');
     }
 
+    public function add_news() {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("news_events/news");
+        }
+
+        $this->data['page_title'] = "Add News";
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('news_events/add_news_view');
+        } else {
+            $this->news_events_model->add_news($this->input->post('name'),
+                                               $this->input->post('content'));
+            $_SESSION['auth_message'] = 'News added.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("news_events/news");
+        }
+    }
+
+    public function add_event() {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("news_events/events");
+        }
+
+        $this->data['page_title'] = "Add Event";
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('speaker', 'Speaker', 'trim|required');
+        $this->form_validation->set_rules('topic', 'Topic', 'trim|required');
+        $this->form_validation->set_rules('location', 'Location', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('news_events/add_event_view');
+        } else {
+            $this->news_events_model->add_event($this->input->post('speaker'),
+                                                $this->input->post('topic'),
+                                                $this->input->post('location'),
+                                                $this->input->post('date'),
+                                                $this->input->post('content'));
+            $_SESSION['auth_message'] = 'New event added.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("news_events/events");
+        }
+    }
+
+    public function edit_seminar($id) {
+        $this->data['page_title'] = "Edit Seminar";
+
+        $this->data['seminar'] = $this->internal_event_model->get_seminar_row($id);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('place', 'Place', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('start_time', 'Start time', 'trim|required');
+        $this->form_validation->set_rules('end_time', 'End time', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('internal_event/edit_seminar_view');
+        } else {
+            $this->internal_event_model->update_seminar($id,
+                                                        $this->input->post('name'),
+                                                        $this->input->post('place'),
+                                                        $this->input->post('date'),
+                                                        $this->input->post('start_time'),
+                                                        $this->input->post('end_time'));
+            $_SESSION['auth_message'] = 'Seminar updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("internal_event#seminar");
+        }
+    }
+
     public function delete_news($id) {
         if (!($this->ion_auth->is_admin())) {
             redirect("news_events/view_news/".$id);
