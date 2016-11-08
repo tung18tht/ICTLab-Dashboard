@@ -44,6 +44,15 @@
                 <li <?php echo ($page_title=='Staffs') ? 'class="active"' : FALSE ?>><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
                 <li <?php echo ($page_title=='Research Topics') ? 'class="active"' : FALSE ?>><?php echo anchor('information/research_topic', 'Research Topic'); ?></li>
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li <?php echo ($page_title=='SWARMS') ? 'class="active"' : FALSE ?>><?php echo anchor('information/swarms', 'SWARMS'); ?></li>
+                        <li <?php echo ($page_title=='ARCHIVES') ? 'class="active"' : FALSE ?>><?php echo anchor('information/archives', 'ARCHIVES'); ?></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">News & Events
                         <span class="caret"></span>
                     </a>
