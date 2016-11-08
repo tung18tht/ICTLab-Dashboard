@@ -20,4 +20,16 @@ class Information_Model extends CI_Model {
         $query = $this->db->get_where('information', array('name' => 'research_topic'));
         return $query->row_array();
     }
+
+    public function update_about($content) {
+        $this->db->update('information', array('content' => $content), "name = about");
+    }
+
+    public function update_contact($content) {
+        $this->db->update('information', array('content' => $content), "name = contact");
+    }
+
+    public function update_research_topic($content) {
+        $this->db->update('information', array('content' => $content), "name = research_topic");
+    }
 }
