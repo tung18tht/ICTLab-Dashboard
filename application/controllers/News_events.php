@@ -90,30 +90,51 @@ class News_events extends Auth_Controller {
         }
     }
 
-    public function edit_seminar($id) {
-        $this->data['page_title'] = "Edit Seminar";
+    public function edit_news($id) {
+        $this->data['page_title'] = "Edit News";
 
-        $this->data['seminar'] = $this->internal_event_model->get_seminar_row($id);
+        $this->data['news'] = $this->news_events_model->get_news_row($id);
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
-        $this->form_validation->set_rules('place', 'Place', 'trim|required');
-        $this->form_validation->set_rules('date', 'Date', 'trim|required');
-        $this->form_validation->set_rules('start_time', 'Start time', 'trim|required');
-        $this->form_validation->set_rules('end_time', 'End time', 'trim|required');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
         if ($this->form_validation->run() === FALSE) {
             $this->load->helper('form');
-            $this->render('internal_event/edit_seminar_view');
+            $this->render('news_events/edit_news_view');
         } else {
-            $this->internal_event_model->update_seminar($id,
-                                                        $this->input->post('name'),
-                                                        $this->input->post('place'),
-                                                        $this->input->post('date'),
-                                                        $this->input->post('start_time'),
-                                                        $this->input->post('end_time'));
-            $_SESSION['auth_message'] = 'Seminar updated.';
+            $this->news_events_model->update_news($id,
+                                                  $this->input->post('name'),
+                                                  $this->input->post('content'));
+            $_SESSION['auth_message'] = 'News updated.';
             $this->session->mark_as_flash('auth_message');
-            redirect("internal_event#seminar");
+            redirect("news_events/news");
+        }
+    }
+
+    public function edit_event($id) {
+        $this->data['page_title'] = "Edit Event";
+
+        $this->data['event'] = $this->news_events_model->get_event_row($id);
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('speaker', 'Speaker', 'trim|required');
+        $this->form_validation->set_rules('topic', 'Topic', 'trim|required');
+        $this->form_validation->set_rules('location', 'Location', 'trim|required');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required');
+        $this->form_validation->set_rules('content', 'Content', 'trim|required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->helper('form');
+            $this->render('news_events/edit_event_view');
+        } else {
+            $this->news_events_model->update_event($id,
+                                                   $this->input->post('speaker'),
+                                                   $this->input->post('topic'),
+                                                   $this->input->post('location'),
+                                                   $this->input->post('date'),
+                                                   $this->input->post('content'));
+            $_SESSION['auth_message'] = 'Event updated.';
+            $this->session->mark_as_flash('auth_message');
+            redirect("news_events/events");
         }
     }
 
