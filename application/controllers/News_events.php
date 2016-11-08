@@ -84,6 +84,10 @@ class News_events extends Auth_Controller {
     }
 
     public function edit_news($id) {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("news_events");
+        }
+
         $this->data['page_title'] = "Edit News";
 
         $this->data['news'] = $this->news_events_model->get_news_row($id);
@@ -105,6 +109,10 @@ class News_events extends Auth_Controller {
     }
 
     public function edit_event($id) {
+        if (!($this->ion_auth->is_admin())) {
+            redirect("news_events");
+        }
+
         $this->data['page_title'] = "Edit Event";
 
         $this->data['event'] = $this->news_events_model->get_event_row($id);
