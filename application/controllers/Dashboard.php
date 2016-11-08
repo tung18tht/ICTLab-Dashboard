@@ -48,8 +48,6 @@ class Dashboard extends Auth_Controller {
             if($id = $this->ion_auth->register($email,$password,$email,$additional_data)) {
                 $this->load->model('profile_model');
                 $this->profile_model->create_profile($id);
-
-                $this->ion_auth->activate($id);
                 
                 $_SESSION['auth_message'] = 'User added.';
                 $this->session->mark_as_flash('auth_message');
