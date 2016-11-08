@@ -39,15 +39,28 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><?php echo anchor('information/about', 'About'); ?></li>
-                <li><?php echo anchor('information/contact', 'Contact'); ?></li>
-                <li><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
-                <li><?php echo anchor('information/research_topic', 'Research Topic'); ?></li>
-                <li><?php echo anchor('calendar', 'Calendar'); ?></li>
+                <li <?php echo ($page_title=='About') ? 'class="active"' : FALSE ?>><?php echo anchor('information/about', 'About'); ?></li>
+                <li <?php echo ($page_title=='Contact') ? 'class="active"' : FALSE ?>><?php echo anchor('information/contact', 'Contact'); ?></li>
+                <li <?php echo ($page_title=='Staffs') ? 'class="active"' : FALSE ?>><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
+                <li <?php echo ($page_title=='Research Topics') ? 'class="active"' : FALSE ?>><?php echo anchor('information/research_topic', 'Research Topic'); ?></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">News & Events
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li <?php echo ($page_title=='News') ? 'class="active"' : FALSE ?>><?php echo anchor('news_events/news', 'News'); ?></li>
+                        <li <?php echo ($page_title=='Events') ? 'class="active"' : FALSE ?>><?php echo anchor('news_events/events', 'Events'); ?></li>
+                    </ul>
+                </li>
+                <li <?php echo ($page_title=='Calendar') ? 'class="active"' : FALSE ?>><?php echo anchor('calendar', 'Calendar'); ?></li>
                 <?php
-                    echo $this->ion_auth->is_admin() ? '<li>'.anchor('internal_event', 'Internal Events').'</li>' : FALSE;
+                    if ($this->ion_auth->is_admin()) {
+                        echo '<li';
+                        echo ($page_title=='Internal Events') ? ' class="active"' : FALSE;
+                        echo '>' . anchor('internal_event', 'Internal Events').'</li>';
+                    }
                 ?>
-             </ul>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
