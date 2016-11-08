@@ -169,6 +169,11 @@ CREATE TABLE `information` (
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `information` VALUES
+('about', 'About'),
+('contact', 'Contact'),
+('research_topic', 'Research Topic');
+
 DROP TABLE IF EXISTS `news`;
 
 CREATE TABLE `news` (
