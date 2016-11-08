@@ -6,7 +6,7 @@
         </p>
       
         <p class="navbar-text pull-right">
-            Web Design & Development by Tung Nguyen
+            Web Design & Development by <a href="https://github.com/tung18tht/">Tung Nguyen</a>
         </p>
     </div>
 </div>
