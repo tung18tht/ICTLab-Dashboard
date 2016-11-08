@@ -45,7 +45,7 @@ class Information extends Auth_Controller {
             $this->load->helper('form');
             $this->render('information/edit_about_view');
         } else {
-            $this->information_model->update_about($content);
+            $this->information_model->update_about($this->input->post('content'));
             $_SESSION['auth_message'] = 'About updated.';
             $this->session->mark_as_flash('auth_message');
             redirect("information/about");
@@ -67,7 +67,7 @@ class Information extends Auth_Controller {
             $this->load->helper('form');
             $this->render('information/edit_contact_view');
         } else {
-            $this->information_model->update_contact($content);
+            $this->information_model->update_contact($this->input->post('content'));
             $_SESSION['auth_message'] = 'Contact updated.';
             $this->session->mark_as_flash('auth_message');
             redirect("information/contact");
@@ -89,7 +89,7 @@ class Information extends Auth_Controller {
             $this->load->helper('form');
             $this->render('information/edit_research_topic_view');
         } else {
-            $this->information_model->update_research_topic($content);
+            $this->information_model->update_research_topic($this->input->post('content'));
             $_SESSION['auth_message'] = 'Research Topics updated.';
             $this->session->mark_as_flash('auth_message');
             redirect("information/research_topic");

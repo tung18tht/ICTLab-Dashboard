@@ -22,14 +22,14 @@ class Information_Model extends CI_Model {
     }
 
     public function update_about($content) {
-        $this->db->update('information', array('content' => $content), "name = about");
+        $this->db->update('information', array('content' => $content), "name = 'about'");
     }
 
     public function update_contact($content) {
-        $this->db->update('information', array('content' => $content), "name = contact");
+        $this->db->update('information', array('content' => $content), "name = 'contact'");
     }
 
     public function update_research_topic($content) {
-        $this->db->update('information', array('content' => $content), "name = research_topic");
+        $this->db->update('information', array('content' => $content), "name = 'research_topic'");
     }
 }
