@@ -224,11 +224,15 @@ div.today:hover .day_listing {
 /* Internal events page */
 
 .place {
-    width: 20%;
+    width: 25%;
 }
 
 .date {
     width: 91px;
+}
+
+.time {
+    width: 10px;
 }
 
 /* Textarea forms */
