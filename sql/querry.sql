@@ -172,7 +172,9 @@ CREATE TABLE `information` (
 INSERT INTO `information` VALUES
 ('about', 'About'),
 ('contact', 'Contact'),
-('research_topic', 'Research Topic');
+('research_topic', 'Research Topic'),
+('swarms', 'SWARMS'),
+('archives', 'ARCHIVES');
 
 DROP TABLE IF EXISTS `news`;
 
