@@ -250,6 +250,10 @@ div.today:hover .day_listing {
     margin-top: -10px;
 }
 
+.add_link {
+    margin-bottom: 30px;
+}
+
 /* Textarea forms */
 textarea {  
    font-family: "Lucida Console", Monaco, monospace;
