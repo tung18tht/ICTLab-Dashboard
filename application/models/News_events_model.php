@@ -65,6 +65,6 @@ class News_Events_Model extends CI_Model {
     }
 
     public function delete_event($id) {
-        $this->db->delete('event', array('id' => $id));
+        $this->db->delete('events', array('id' => $id));
     }
 }

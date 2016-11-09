@@ -55,9 +55,15 @@
             </div>
         </div>
 
-        <div class="col-lg-12 form-group text-right">
+        <div class="col-lg-8 form-group text-right pull-right">
             <input type="submit" name="submit" class="btn btn-primary" value="Save changes">
             <?php echo anchor('news_events', 'Cancel', array('class' => 'btn btn-default')); ?>
+        </div>
+
+        <div class="col-md-4 pull-left">
+            <?php
+                echo anchor('news_events/delete_event/'.$event['id'], 'Delete', array('class' => 'btn btn-danger'));
+            ?>
         </div>
     </form>
 </div>
