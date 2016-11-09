@@ -7,5 +7,11 @@
         <strong>Location: </strong><?php echo $event['location']; ?><br>
         <strong>Date: </strong><?php echo $event['date']; ?><br>
         <div><?php echo $event['content']; ?></div>
+    
+        <div class="text-right">
+            <?php if($this->ion_auth->is_admin()) {
+                echo anchor('news_events/edit_event/'.$event['id'], 'Edit');
+            } ?>
+        </div>
     </div>
 </div>
