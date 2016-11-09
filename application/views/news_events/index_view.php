@@ -20,9 +20,13 @@
                     </div>
                     <hr>
                 <?php } ?>
-                <div class="text-right add_link">
-                    <strong><?php echo anchor('news_events/add_news', '+ Add News'); ?></strong>
-                </div> 
+                <?php 
+                    if ($this->ion_auth->is_admin()) {
+                        echo '<div class="text-right add_link">';
+                        echo '<strong>' . anchor("news_events/add_news", "+ Add News") . '</strong>';
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
 
@@ -38,9 +42,13 @@
                     </div>
                     <hr>
                 <?php } ?>
-                <div class="text-right add_link">
-                    <strong><?php echo anchor('news_events/add_event', '+ Add Event'); ?></strong>
-                </div> 
+                <?php 
+                    if ($this->ion_auth->is_admin()) {
+                        echo '<div class="text-right add_link">';
+                        echo '<strong>' . anchor("news_events/add_event", "+ Add Event") . '</strong>';
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
     </div>
