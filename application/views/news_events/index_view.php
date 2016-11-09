@@ -15,9 +15,6 @@
                     <h3><?php echo anchor('news_events/view_news/'.$new['id'], $new['name']); ?></h3>
                     <em class="news_time"><?php echo $new['time']; ?></em>
                     <p><?php echo substr($new['content'], 0, 500); ?> ...</p>
-                    <div class="text-right readmore">
-                        <?php echo anchor('news_events/view_news/'.$new['id'], 'Read more'); ?>
-                    </div>
                     <hr>
                 <?php } ?>
                 <?php 
@@ -37,9 +34,6 @@
                     <strong>Speaker: </strong><?php echo $event['speaker'] ?><br>
                     <strong>Location: </strong><?php echo $event['location'] ?><br>
                     <strong>Date: </strong><?php echo $event['date'] ?>
-                    <div class="text-right readmore">
-                        <?php echo anchor('news_events/view_event/'.$event['id'], 'Read more'); ?>
-                    </div>
                     <hr>
                 <?php } ?>
                 <?php 

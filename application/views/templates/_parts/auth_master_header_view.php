@@ -11,6 +11,7 @@
     ?></title>
 
     <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.css"); ?>"/>
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/dashboard.css"); ?>"/>
     <link rel="stylesheet" href="<?php echo base_url("assets/css/style.css"); ?>"/>
 
     <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.1.js"); ?>"></script>
@@ -39,11 +40,36 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li <?php echo ($page_title=='About') ? 'class="active"' : FALSE ?>><?php echo anchor('information/about', 'About'); ?></li>
-                <li <?php echo ($page_title=='Contact') ? 'class="active"' : FALSE ?>><?php echo anchor('information/contact', 'Contact'); ?></li>
-                <li <?php echo ($page_title=='Staffs') ? 'class="active"' : FALSE ?>><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
-                <li <?php echo ($page_title=='Research Topics') ? 'class="active"' : FALSE ?>><?php echo anchor('information/research_topic', 'Research Topic'); ?></li>
+                <li <?php echo ($page_title=='Dashboard') ? 'class="active"' : FALSE ?>><?php echo anchor('dashboard', '<strong>Dashboard</strong>'); ?></li>
+
                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Public Information
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li <?php echo ($page_title=='About') ? 'class="active"' : FALSE ?>><?php echo anchor('information/about', 'About'); ?></li>
+                        <li <?php echo ($page_title=='Contact') ? 'class="active"' : FALSE ?>><?php echo anchor('information/contact', 'Contact'); ?></li>
+                        <li <?php echo ($page_title=='Research Topics') ? 'class="active"' : FALSE ?>><?php echo anchor('information/research_topic', 'Research Topic'); ?></li>
+                        <li <?php echo ($page_title=='SWARMS') ? 'class="active"' : FALSE ?>><?php echo anchor('information/swarms', 'Project SWARMS'); ?></li>
+                        <li <?php echo ($page_title=='ARCHIVES') ? 'class="active"' : FALSE ?>><?php echo anchor('information/archives', 'Project ARCHIVES'); ?></li>
+                        <?php
+                            if (!($this->ion_auth->is_admin())) {
+                                echo '<li';
+                                echo ($page_title=='News & Events') ? ' class="active"' : FALSE;
+                                echo '>' . anchor('news_events', 'News & Events').'</li>';
+                            }
+                        ?>
+                    </ul>
+                </li>
+                <?php
+                    if ($this->ion_auth->is_admin()) {
+                        echo '<li';
+                        echo ($page_title=='News & Events') ? ' class="active"' : FALSE;
+                        echo '>' . anchor('news_events', 'News & Events').'</li>';
+                    }
+                ?>
+
+                <!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects
                         <span class="caret"></span>
                     </a>
@@ -51,14 +77,16 @@
                         <li <?php echo ($page_title=='SWARMS') ? 'class="active"' : FALSE ?>><?php echo anchor('information/swarms', 'SWARMS'); ?></li>
                         <li <?php echo ($page_title=='ARCHIVES') ? 'class="active"' : FALSE ?>><?php echo anchor('information/archives', 'ARCHIVES'); ?></li>
                     </ul>
-                </li>
-                <li <?php echo ($page_title=='News & Events') ? 'class="active"' : FALSE ?>><?php echo anchor('news_events', 'News & Events'); ?></li>
+                </li> -->
+
+                
                 <li <?php echo ($page_title=='Calendar') ? 'class="active"' : FALSE ?>><?php echo anchor('calendar', 'Calendar'); ?></li>
+                <li <?php echo ($page_title=='Staffs') ? 'class="active"' : FALSE ?>><?php echo anchor('dashboard/staff', 'Staffs'); ?></li>
                 <?php
                     if ($this->ion_auth->is_admin()) {
                         echo '<li';
                         echo ($page_title=='Internal Events') ? ' class="active"' : FALSE;
-                        echo '>' . anchor('internal_event', 'Internal Events').'</li>';
+                        echo '>' . anchor('internal_event', 'Internal Seminars').'</li>';
                     }
                 ?>
             </ul>
